@@ -78,35 +78,40 @@
 
                 </LinearLayout>
 
-                <Button
+                <android.widget.Button
                     android:id="@+id/DN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"
                     android:layout_marginTop="12dp"
-                    android:text="Đăng nhập" />
+                    android:text="Đăng nhập"
+                    android:textColor="#fff"/>
 
-                <Button
+                <android.widget.Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"
                     android:layout_marginTop="12dp"
                     android:text="Tiếp tục với Facebook"
-                    style="@style/btn"/>
+                    android:backgroundTint="#4267B2"
+                    />
 
-                <Button
+                <android.widget.Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Tiếp tục vớiApple"
                     android:layout_marginTop="12dp"
-                    android:background="@drawable/button"/>
+                    android:background="@drawable/button"
+                    android:backgroundTint="#000000"
+                    android:textColor="#FFF"/>
 
-                <Button
+                <android.widget.Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button"
                     android:layout_marginTop="12dp"
-                    android:text="Tiếp tục với Google" />
+                    android:text="Tiếp tục với Google"
+                    android:backgroundTint="#FFFFFF"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

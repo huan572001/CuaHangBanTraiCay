@@ -35,6 +35,13 @@ public class DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        QuenMK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DangNhap.this, com.example.cuahangbantraicay.QuenMK.class);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
