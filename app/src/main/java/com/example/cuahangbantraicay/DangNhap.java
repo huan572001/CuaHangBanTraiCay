@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.API.LoginAPI;
+import com.example.cuahangbantraicay.Utils.BASE_URL;
+
 public class DangNhap extends AppCompatActivity {
     Button DangNhap;
     TextView QuenMK,DK;
@@ -43,11 +46,33 @@ public class DangNhap extends AppCompatActivity {
             }
         });
     }
+    public  void login(){
+
+        LoginAPI.getUsers(DangNhap.this, BASE_URL.BASE_URL + "getAllUsers", new LoginAPI.VolleyCallback() {
+
+            @Override
+            public void onSuccess(String result) {
+                System.out.println("da v o ===========================================================");
+
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                System.out.println(errorMessage+"huasndjsa==============================");
+
+
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        login();
+
         setContentView(R.layout.dang_nhap);
         setControl();
         setEvent();
+
     }
 }
