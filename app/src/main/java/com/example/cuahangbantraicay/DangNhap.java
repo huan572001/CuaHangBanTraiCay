@@ -48,21 +48,21 @@ public class DangNhap extends AppCompatActivity {
     }
     public  void login(){
 
-        LoginAPI.getUsers(DangNhap.this, BASE_URL.BASE_URL + "getAllUsers", new LoginAPI.VolleyCallback() {
-
-            @Override
-            public void onSuccess(String result) {
-                System.out.println("da v o ===========================================================");
-
-            }
-
-            @Override
-            public void onError(String errorMessage) {
-                System.out.println(errorMessage+"huasndjsa==============================");
-
-
-            }
-        });
+//        LoginAPI.getUsers(DangNhap.this, BASE_URL.BASE_URL + "getAllUsers", new LoginAPI.VolleyCallback() {
+//
+//            @Override
+//            public void onSuccess(String result) {
+//                System.out.println("da v o ===========================================================");
+//
+//            }
+//
+//            @Override
+//            public void onError(String errorMessage) {
+//                System.out.println(errorMessage+"huasndjsa==============================");
+//
+//
+//            }
+//        });
     }
 
     @Override
