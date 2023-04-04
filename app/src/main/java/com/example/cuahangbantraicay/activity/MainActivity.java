@@ -1,4 +1,4 @@
-package com.example.cuahangbantraicay;
+package com.example.cuahangbantraicay.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -6,17 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.example.cuahangbantraicay.Fragment.FragmentHomeProduct;
+import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.internet;
 import com.google.android.material.navigation.NavigationView;
 

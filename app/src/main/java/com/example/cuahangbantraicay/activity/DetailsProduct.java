@@ -1,4 +1,4 @@
-package com.example.cuahangbantraicay;
+package com.example.cuahangbantraicay.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cuahangbantraicay.Modal.Product;
+import com.example.cuahangbantraicay.R;
 
 public class DetailsProduct extends AppCompatActivity {
     Product product;

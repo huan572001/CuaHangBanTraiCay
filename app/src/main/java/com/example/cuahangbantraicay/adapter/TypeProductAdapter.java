@@ -6,15 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cuahangbantraicay.MainActivity;
-import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.activity.DangNhap;
 
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext, com.example.cuahangbantraicay.DangNhap.class);
+                Intent intent = new Intent(mContext, DangNhap.class);
                 mContext.startActivity(intent);
             }
         });

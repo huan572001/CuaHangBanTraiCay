@@ -1,4 +1,4 @@
-package com.example.cuahangbantraicay;
+package com.example.cuahangbantraicay.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.cuahangbantraicay.API.LoginAPI;
+import com.example.cuahangbantraicay.R;
 
 public class DangKy extends AppCompatActivity {
     TextView DN;
@@ -21,14 +21,14 @@ public class DangKy extends AppCompatActivity {
         DN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DangKy.this, com.example.cuahangbantraicay.DangNhap.class);
+                Intent intent = new Intent(DangKy.this, DangNhap.class);
                 startActivity(intent);
             }
         });
         btnDK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DangKy.this, com.example.cuahangbantraicay.OTP.class);
+                Intent intent = new Intent(DangKy.this, OTP.class);
                 startActivity(intent);
             }
         });
