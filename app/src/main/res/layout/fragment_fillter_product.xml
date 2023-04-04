@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_type_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New Product"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_new_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Populer Product"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_populer_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        />
+</LinearLayout>

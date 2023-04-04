@@ -1,4 +1,4 @@
-package com.example.cuahangbantraicay;
+package com.example.cuahangbantraicay.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.cuahangbantraicay.R;
 
 public class OTP extends AppCompatActivity {
     TextView textCountDownTimer,resetOTP;
