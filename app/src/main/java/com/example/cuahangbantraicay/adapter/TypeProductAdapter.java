@@ -10,21 +10,24 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.activity.DangNhap;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.TypeProductViewHoder> {
 
     private Context mContext;
-    private List<String> mListTypeProduct;
+    private List<Category> mListTypeProduct;
 
     public TypeProductAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<String> list) {
+    public void setData(List<Category> list) {
+
         this.mListTypeProduct = list;
         notifyDataSetChanged();
     }
@@ -38,9 +41,9 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TypeProductViewHoder holder, int position) {
-        String product = mListTypeProduct.get(position);
+        Category product = mListTypeProduct.get(position);
         if (product == null) return;
-        holder.btn_type_product.setText(product);
+        holder.btn_type_product.setText(product.getName());
         holder.btn_type_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

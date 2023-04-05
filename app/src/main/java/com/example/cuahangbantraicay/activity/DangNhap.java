@@ -34,14 +34,15 @@ public class DangNhap extends AppCompatActivity {
         DangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(UserName.getText().length()>0&&Password.getText().length()>0){
-                    try {
-                        login();
-                    } catch (JSONException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-
+//                if(UserName.getText().length()>0&&Password.getText().length()>0){
+//                    try {
+//                        login();
+//                    } catch (JSONException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+                Intent intent = new Intent(DangNhap.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         DK.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +71,7 @@ public class DangNhap extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else {
-                        System.out.println(result.get("mgs").toString()+"dasdsakdhashdfshglksfhgih");
+
                         Toast.makeText(getApplicationContext(), result.get("mgs").toString(), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
