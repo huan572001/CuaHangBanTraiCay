@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private int resourceId;
     private String name;
-
+ private int huan;
     public Product(int resourceId, String name) {
         this.resourceId = resourceId;
         this.name = name;
