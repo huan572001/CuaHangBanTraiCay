@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.activity.DangNhap;
+import com.example.cuahangbantraicay.activity.DetailTypeProduct;
 
 import java.util.Calendar;
 import java.util.List;
@@ -48,7 +49,8 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext, DangNhap.class);
+                Intent intent = new Intent(mContext, DetailTypeProduct.class);
+                intent.putExtra("idCategory",product.getId());
                 mContext.startActivity(intent);
             }
         });
