@@ -1,6 +1,7 @@
 package com.example.cuahangbantraicay.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,15 +26,18 @@ public class DetailTypeProduct extends AppCompatActivity {
     int id;
     RecyclerView rcvProduct;
     DetailATypeProductAdapter detailATypeProductAdapter;
-    List<Product> listProduct= new ArrayList<>();
+    List<Product> listProduct = new ArrayList<>();
+
     private void setControl() {
         rcvProduct = findViewById(R.id.rcv_detail_a_type_product);
     }
 
     private void createViewProduct() {
-        detailATypeProductAdapter=new DetailATypeProductAdapter(this);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
-        rcvProduct.setLayoutManager(linearLayoutManager);
+        detailATypeProductAdapter = new DetailATypeProductAdapter(this);
+        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2);
+
+        rcvProduct.setLayoutManager(layoutManagerGrid);
+
         getListDetailATypePoduct();
         rcvProduct.setAdapter(detailATypeProductAdapter);
     }
@@ -53,16 +57,25 @@ public class DetailTypeProduct extends AppCompatActivity {
             ProductAPI.getProductByIDCategory(this, new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {
-                    System.out.println(result+"=====================");
+
 
                     try {
                         if ((Boolean) result.get("success")) {
 
                             JSONArray events = result.getJSONArray("data");
+                            JSONObject object= new JSONObject();
                             for (int j = 0; j < events.length(); j++) {
-                                Product item = new Product((Integer) events.getJSONObject(j).get("id"), (String) events.getJSONObject(j).get("name"));
-                                listProduct.add(item);
+                                object=(JSONObject) events.get(j);
+                                Product product=new Product();
+                                product.setId(object.getInt("id"));
+                                product.setName(object.getString("name"));
+                                product.setImage(object.getString("image"));
+                                product.setPrice_sell((float) object.getDouble("price_sell"));
+                                product.setStatus(object.getBoolean("status"));
+
+                                listProduct.add(product);
                             }
+
                             detailATypeProductAdapter.setData(listProduct);
                         }
                     } catch (JSONException e) {

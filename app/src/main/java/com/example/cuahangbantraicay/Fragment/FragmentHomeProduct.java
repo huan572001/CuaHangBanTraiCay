@@ -82,12 +82,12 @@ public class FragmentHomeProduct extends Fragment {
 
     private List<Product> getListNewProduct() {
         List<Product> list = new ArrayList<>();
-        list.add(new Product(R.drawable.logo, "username1"));
-        list.add(new Product(R.drawable.logo, "username2"));
-        list.add(new Product(R.drawable.logo, "username3"));
-        list.add(new Product(R.drawable.logo, "username4"));
-        list.add(new Product(R.drawable.logo, "username5"));
-        list.add(new Product(R.drawable.logo, "username6"));
+//        list.add(new Product(R.drawable.logo, "username1"));
+//        list.add(new Product(R.drawable.logo, "username2"));
+//        list.add(new Product(R.drawable.logo, "username3"));
+//        list.add(new Product(R.drawable.logo, "username4"));
+//        list.add(new Product(R.drawable.logo, "username5"));
+//        list.add(new Product(R.drawable.logo, "username6"));
         return list;
     }
 

@@ -43,7 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product product = mListFillterProduct.get(position);
         if (product == null) return;
         holder.textView.setText(product.getName());
-        holder.imgUser.setImageResource(product.getResourceId());
+        holder.imgUser.setImageResource(product.getId());
         holder.imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -20,7 +20,7 @@ public class DetailsProduct extends AppCompatActivity {
     }
     private void onDataProduct(){
         product= (Product) getIntent().getSerializableExtra("a");
-        img.setImageResource(product.getResourceId());
+        img.setImageResource(product.getId());
         tv_name.setText(product.getName().toString());
         tv_describe.setText(product.getName().toString());
     }
