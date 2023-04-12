@@ -9,6 +9,7 @@
         android:id="@+id/rcv_detail_a_type_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:paddingLeft="8dp"/>
 
 </LinearLayout>

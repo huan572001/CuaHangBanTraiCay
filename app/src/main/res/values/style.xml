@@ -8,4 +8,11 @@
 <style name="btn">
     <item name="android:background">@drawable/button_border</item>
 </style>
+    <style name="tvProduct">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
 </resources>

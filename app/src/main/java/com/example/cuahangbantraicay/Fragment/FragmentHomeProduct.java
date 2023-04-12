@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahangbantraicay.API.HomeAPI;
+import com.example.cuahangbantraicay.API.ProductAPI;
 import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
@@ -24,12 +25,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class FragmentHomeProduct extends Fragment {
     private RecyclerView rcvNewPro, rcvPopulerProduct, rcvTypeProduct;
-    ProductAdapter newProductAdapter, populerProductAdapter;
+    ProductAdapter newProductAdapter, popularProductAdapter;
     TypeProductAdapter typeProductAdapter;
     List<Category> list = new ArrayList<>();
 
@@ -57,16 +57,17 @@ public class FragmentHomeProduct extends Fragment {
         newProductAdapter = new ProductAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         rcvNewPro.setLayoutManager(linearLayoutManager);
-        newProductAdapter.setData(getListNewProduct());
+
+        getListNewProduct();
         rcvNewPro.setAdapter(newProductAdapter);
     }
 
     private void createViewPopulerProduct() {
-        populerProductAdapter = new ProductAdapter(getContext());
+        popularProductAdapter = new ProductAdapter(getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         rcvPopulerProduct.setLayoutManager(linearLayoutManager);
-        populerProductAdapter.setData(getListNewProduct());
-        rcvPopulerProduct.setAdapter(populerProductAdapter);
+        getListPopularProduct();
+        rcvPopulerProduct.setAdapter(popularProductAdapter);
     }
 
     @Nullable
@@ -79,16 +80,85 @@ public class FragmentHomeProduct extends Fragment {
         createViewTypeProduct();
         return view;
     }
+    private void getListPopularProduct() {
+        List<Product> listPopularProduct=new ArrayList<>();
+        try {
+            ProductAPI.getPopularProduct(getContext(), new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if ((Boolean) result.get("success")) {
+                            JSONArray events = result.getJSONArray("data");
+                            JSONObject object= new JSONObject();
+                            for (int j = 0; j < events.length(); j++) {
+                                object=(JSONObject) events.get(j);
+                                Product product=new Product();
+                                product.setId(object.getInt("id"));
+                                product.setName(object.getString("name"));
+                                product.setImage(object.getString("image"));
+                                product.setPrice_sell((float) object.getDouble("price_sell"));
+                                product.setStatus(object.getBoolean("status"));
+                                product.setDiscout(object.getInt("discout"));
 
-    private List<Product> getListNewProduct() {
-        List<Product> list = new ArrayList<>();
-//        list.add(new Product(R.drawable.logo, "username1"));
-//        list.add(new Product(R.drawable.logo, "username2"));
-//        list.add(new Product(R.drawable.logo, "username3"));
-//        list.add(new Product(R.drawable.logo, "username4"));
-//        list.add(new Product(R.drawable.logo, "username5"));
-//        list.add(new Product(R.drawable.logo, "username6"));
-        return list;
+                                listPopularProduct.add(product);
+                            }
+                            popularProductAdapter.setData(listPopularProduct);
+                        }
+                    } catch (JSONException e) {
+                        System.out.println(e + "lỗi nè");
+
+                    }
+
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+
+                }
+            });
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void getListNewProduct() {
+        List<Product> listNewProduct=new ArrayList<>();
+        try {
+            ProductAPI.getNewProduct(getContext(), new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if ((Boolean) result.get("success")) {
+                                JSONArray events = result.getJSONArray("data");
+                                JSONObject object= new JSONObject();
+                                for (int j = 0; j < events.length(); j++) {
+                                    object=(JSONObject) events.get(j);
+                                    Product product=new Product();
+                                    product.setId(object.getInt("id"));
+                                    product.setName(object.getString("name"));
+                                    product.setImage(object.getString("image"));
+                                    product.setPrice_sell((float) object.getDouble("price_sell"));
+                                    product.setStatus(object.getBoolean("status"));
+                                    product.setDiscout(object.getInt("discout"));
+
+                                    listNewProduct.add(product);
+                                }
+                            newProductAdapter.setData(listNewProduct);
+                        }
+                    } catch (JSONException e) {
+                        System.out.println(e + "lỗi nè");
+
+                    }
+
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+
+                }
+            });
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void getListTypeProduct() throws JSONException {

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,8 +46,8 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
     public void onBindViewHolder(@NonNull TypeProductViewHoder holder, int position) {
         Category product = mListTypeProduct.get(position);
         if (product == null) return;
-        holder.btn_type_product.setText(product.getName());
-        holder.btn_type_product.setOnClickListener(new View.OnClickListener() {
+        holder.name_product.setText(product.getName());
+        holder.ll_type_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -64,11 +66,13 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
     }
 
     public class TypeProductViewHoder extends RecyclerView.ViewHolder {
-        private Button btn_type_product;
+        private LinearLayout ll_type_product;
+        private TextView name_product;
 
         public TypeProductViewHoder(@NonNull View itemView) {
             super(itemView);
-            btn_type_product=itemView.findViewById(R.id.btn_type_product);
+            ll_type_product=itemView.findViewById(R.id.LL_type_Product);
+            name_product=itemView.findViewById(R.id.tv_name_type_product);
         }
     }
 }
