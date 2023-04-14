@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -91,15 +92,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         internet.isConnected(this);
         setContentView(R.layout.activity_main);
-        setControl();
-        if (fragmentHomeProduct==null)
-            fragmentHomeProduct= new FragmentHomeProduct();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.NoiDung,fragmentHomeProduct)
-                .commit();
-
-        setEvent();
-
+//        setControl();
+//        if (fragmentHomeProduct==null)
+//            fragmentHomeProduct= new FragmentHomeProduct();
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.NoiDung,fragmentHomeProduct)
+//                .commit();
+//
+//        setEvent();
+        Intent myIntent = new Intent(MainActivity.this, Welcome.class);
+        MainActivity.this.startActivity(myIntent);
     }
 }
