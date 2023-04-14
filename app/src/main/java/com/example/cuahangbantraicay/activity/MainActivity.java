@@ -71,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.remove("token");
                         editor.apply();
-//                        Intent intent = new Intent(MainActivity.this, DangNhap.class);
-//                        startActivity(intent);
+
+                        Intent intent = new Intent(MainActivity.this, DangNhap.class);
+                        startActivity(intent);
                         break;
                 }
                 if (drawerLayout.isDrawerOpen(GravityCompat.START))
