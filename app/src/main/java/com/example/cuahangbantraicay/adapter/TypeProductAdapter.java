@@ -6,25 +6,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.activity.DangNhap;
+import com.example.cuahangbantraicay.activity.DetailTypeProduct;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.TypeProductViewHoder> {
 
     private Context mContext;
-    private List<String> mListTypeProduct;
+    private List<Category> mListTypeProduct;
 
     public TypeProductAdapter(Context mContext) {
         this.mContext = mContext;
     }
 
-    public void setData(List<String> list) {
+    public void setData(List<Category> list) {
+
         this.mListTypeProduct = list;
         notifyDataSetChanged();
     }
@@ -38,14 +44,15 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull TypeProductViewHoder holder, int position) {
-        String product = mListTypeProduct.get(position);
+        Category product = mListTypeProduct.get(position);
         if (product == null) return;
-        holder.btn_type_product.setText(product);
-        holder.btn_type_product.setOnClickListener(new View.OnClickListener() {
+        holder.name_product.setText(product.getName());
+        holder.ll_type_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(mContext, DangNhap.class);
+                Intent intent = new Intent(mContext, DetailTypeProduct.class);
+                intent.putExtra("idCategory",product.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -59,11 +66,13 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
     }
 
     public class TypeProductViewHoder extends RecyclerView.ViewHolder {
-        private Button btn_type_product;
+        private LinearLayout ll_type_product;
+        private TextView name_product;
 
         public TypeProductViewHoder(@NonNull View itemView) {
             super(itemView);
-            btn_type_product=itemView.findViewById(R.id.btn_type_product);
+            ll_type_product=itemView.findViewById(R.id.LL_type_Product);
+            name_product=itemView.findViewById(R.id.tv_name_type_product);
         }
     }
 }
