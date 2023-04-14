@@ -5,127 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.DetailsProduct"
-    android:padding="16dp"
-    >
+    tools:context=".activity.DetailsProduct">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="650dp">
+        android:layout_height="600dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/img_product_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="192dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/logo" />
-                <TextView
-                    android:id="@+id/tv_discount_in_Detail"
-                    android:layout_width="75dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/baseline_turned_in_24"
-                    android:backgroundTint="#FFC105"
-                    android:gravity="center"
-                    android:text="huan"
-                    android:textColor="#FB0000"
-                    android:textSize="12dp"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv_name_product_detail"
-                    android:layout_width="320dp"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="12dp"
-                    android:text="5kg"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-                <TextView
-                    android:id="@+id/tv_price_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="0.0"
-                    android:textColor="#EF0909"
-                    android:textSize="18dp" />
-
-                <TextView
-                    android:id="@+id/tv_quantity_sold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="10dp"
-                    android:text="Đã bán" />
-            </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#F2F2F7" />
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mô tả sản phẩm"
-                android:textStyle="bold"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F2F2F7" />
+                android:text="Can nang" />
+
             <TextView
-                android:id="@+id/tv_content_product"
+                android:id="@+id/tv_name_priduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="3 bộ phận cực quý giá của con lợn, vừa ngon vừa giàu dinh dưỡng nhưng ít người biết mà mua
-Ăn thịt lợn nhiều nhưng chưa chắc bạn đã biết đâu là phần bổ dưỡng nhất của cơn lợn.
-4 biểu hiện thường gặp khi ngủ có thể là dấu hiệu cảnh báo nhồi máu não sắp xảy ra / Những sai lầm khi ăn lẩu khiến bạn tổn thọ, bỏ ngay trước khi quá muộn
-
-Thịt lợn là nguồn cung cấp chất đạm, chất béo, vitamin và các khoáng chất cần thiết cho cơ thể. Đây là loại thực phẩm thường xuyên xuất hiện trên mâm cơm gia đình. Ăn thịt lợn nhiều nhưng chưa chắc bạn đã biết đâu là phần bổ dưỡng nhất của cơn lợn.
-
-Dưới đây là 3 bộ phận của con lợn được đánh giá là bổ dưỡng nhưng không phải lúc nào bạn cũng có thể mua được.
-
-Xương lưỡi liềm
-
-Xương lưỡi liềm là phần ngon nhất của con lợn. Nó nằm ở phần chân trước của lợn, nơi kết nối giữa xương ống và xương quạt. Phần xương này hình cong vát tương tự lưỡi liềm nên được gọi là xương lưỡi liềm.
-3 bộ phận cực quý giá của con lợn, vừa ngon vừa giàu dinh dưỡng nhưng ít người biết mà mua
-Ăn thịt lợn nhiều nhưng chưa chắc bạn đã biết đâu là phần bổ dưỡng nhất của cơn lợn.
-4 biểu hiện thường gặp khi ngủ có thể là dấu hiệu cảnh báo nhồi máu não sắp xảy ra / Những sai lầm khi ăn lẩu khiến bạn tổn thọ, bỏ ngay trước khi quá muộn
-
-Thịt lợn là nguồn cung cấp chất đạm, chất béo, vitamin và các khoáng chất cần thiết cho cơ thể. Đây là loại thực phẩm thường xuyên xuất hiện trên mâm cơm gia đình. Ăn thịt lợn nhiều nhưng chưa chắc bạn đã biết đâu là phần bổ dưỡng nhất của cơn lợn.
-
-Dưới đây là 3 bộ phận của con lợn được đánh giá là bổ dưỡng nhưng không phải lúc nào bạn cũng có thể mua được.
-
-Xương lưỡi liềm
-
-Xương lưỡi liềm là phần ngon nhất của con lợn. Nó nằm ở phần chân trước của lợn, nơi kết nối giữa xương ống và xương quạt. Phần xương này hình cong vát tương tự lưỡi liềm nên được gọi là xương lưỡi liềm."/>
-
-
+                android:gravity="center"
+                android:text="5kg" />
         </LinearLayout>
-    </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mota" />
+
+            <TextView
+                android:id="@+id/tv_describe_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="5kg" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btn_buy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mua" />
