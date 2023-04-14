@@ -8,4 +8,8 @@
         android:id="@+id/mn_CaiDat"
         android:icon="@drawable/logo"
         android:title="Cài đặt" />
+    <item
+        android:id="@+id/mm_Logout"
+        android:icon="@drawable/logo"
+        android:title="Logout" />
 </menu>

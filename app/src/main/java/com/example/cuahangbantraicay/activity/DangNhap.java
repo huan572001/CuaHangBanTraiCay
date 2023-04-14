@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,7 +28,7 @@ public class DangNhap extends AppCompatActivity {
     Button DangNhap;
     TextView QuenMK,DK;
     EditText UserName,Password;
-    Drawable eye;
+    SharedPreferences sharedPreferences;
     @SuppressLint("UseCompatLoadingForDrawables")
     private  void setControl() {
         DangNhap=findViewById(R.id.DN);
@@ -41,6 +42,8 @@ public class DangNhap extends AppCompatActivity {
 
     }
     private void setEvent(){
+        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+
         DangNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,12 +89,12 @@ public class DangNhap extends AppCompatActivity {
         });
     }
     public  void login() throws JSONException {
-        System.out.println("vổi");
         LoginAPI.Login(DangNhap.this, new VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {
                 try {
                     if((Boolean) result.get("success")){
+                        setToken((String) result.get("token"));
                         Intent intent = new Intent(DangNhap.this, MainActivity.class);
                         startActivity(intent);
                     }
@@ -110,16 +113,29 @@ public class DangNhap extends AppCompatActivity {
             }
         },UserName.getText().toString(),Password.getText().toString());
     }
+    private void setToken(String token) {
 
+        SharedPreferences.Editor editer=sharedPreferences.edit();
+        editer.putString("token",token);
+        editer.commit();
+    }
+    private void CheckLogin(){
+        String token = sharedPreferences.getString("token", null);
+        if(token!=null){
+            Intent intent = new Intent(DangNhap.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
-
         setContentView(R.layout.dang_nhap);
         setControl();
         setEvent();
+        CheckLogin();
+
 
     }
 }

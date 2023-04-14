@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setControl() {
         drawerLayout = findViewById(R.id.drawerlayout);
-        viewFlipper = findViewById(R.id.viewflipper);
+//        viewFlipper = findViewById(R.id.viewflipper);
         navigationView = findViewById(R.id.navigationview);
     }
     @Override
@@ -64,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
 
 
                         break;
+                    case R.id.mm_Logout:
+                        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("token");
+                        editor.apply();
+//                        Intent intent = new Intent(MainActivity.this, DangNhap.class);
+//                        startActivity(intent);
+                        break;
                 }
                 if (drawerLayout.isDrawerOpen(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START);
@@ -78,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
         view1.setImageResource(R.drawable.ic_launcher_background);
         ImageView view2 = new ImageView(getApplicationContext());
         view2.setImageResource(R.drawable.logo);
-        viewFlipper.addView(view1);
-        viewFlipper.addView(view2);
-        viewFlipper.setAutoStart(true);
+//        viewFlipper.addView(view1);
+//        viewFlipper.addView(view2);
+//        viewFlipper.setAutoStart(true);
 
     }
     @Override
