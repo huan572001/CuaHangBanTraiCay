@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mn_DangNhap"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/logo"
         android:title="Đăng nhập" />
     <item
         android:id="@+id/mn_CaiDat"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/logo"
         android:title="Cài đặt" />
     <item
         android:id="@+id/cart_action"
