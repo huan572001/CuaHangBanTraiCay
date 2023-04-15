@@ -2,58 +2,43 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerlayout"
-    tools:context=".activity.MainActivity">
+    tools:context="activity.MainActivity"
+    tools:openDrawer="start">
 
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Hello World!"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-<!--    <Button-->
-
-<!--        android:id="@+id/btnDN"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Bai 3"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.681"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.124" />-->
-<!--    <fragment-->
-
-<!--        android:id="@+id/fragmentFillterProduct"-->
-<!--        android:name="com.example.cuahangbantraicay.Fragment.FragmentHomeProduct"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:ignore="MissingConstraints" />-->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ViewFlipper
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/viewflipper"/>
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/purple_700"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/NoiDung"/>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationview"
+        android:id="@+id/navigation_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="start"
-        app:headerLayout="@layout/layout_header"
-        />
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/menu_nav"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
