@@ -18,37 +18,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-import com.example.cuahangbantraicay.Fragment.FragmentHomeProduct;
+import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Fragment.HomeFragment;
 import com.example.cuahangbantraicay.Fragment.ProfileFragment;
-import com.example.cuahangbantraicay.R;
-import com.example.cuahangbantraicay.Utils.internet;
 import com.example.cuahangbantraicay.helper.Converter;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
-    private static final int FRAGMENT_HOME = 0;
-    private static final int FRAGMENT_PROFILE = 1;
-    private static final int FRAGMENT_OFFERS = 2;
-    private static final int FRAGMENT_NEW_PRODUCT = 3;
-    private static final int FRAGMENT_POPULAR_PRODUCTS = 4;
-    private static final int FRAGMENT_CATEGORY = 5;
-    private static final int FRAGMENT_SEARCH = 6;
-    private static final int FRAGMENT_MY_ORDER = 7;
-    private static final int FRAGMENT_MY_CART = 8;
+        implements NavigationView.OnNavigationItemSelectedListener {
+
 
     private static int cart_count = 0;
-    private int mCurrentFragment = FRAGMENT_HOME;
     private DrawerLayout mdrawerLayout;
 
     @SuppressLint("ResourceAsColor")
@@ -91,69 +75,39 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
         switch (item.getItemId()){
             case R.id.nav_home:
-                if(mCurrentFragment != FRAGMENT_HOME) {
-                    replaceFragment(new HomeFragment());
-                    mCurrentFragment = FRAGMENT_HOME;
-                }
+                replaceFragment(new HomeFragment());
                 break;
             case R.id.nav_profile:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_offers:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_new_product:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_popular_products:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_category:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_search:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_my_order:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_my_cart:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+                replaceFragment(new ProfileFragment());
                 break;
-            case R.id.logout:
-                if(mCurrentFragment != FRAGMENT_PROFILE){
-                    replaceFragment(new ProfileFragment());
-                    mCurrentFragment = FRAGMENT_PROFILE;
-                }
+            case R.id.nav_logout:
+                startActivity(new Intent(getApplicationContext(), DangNhap.class));
                 break;
-            }
+
+        }
 
         mdrawerLayout.closeDrawer(GravityCompat.START);
         return false;
