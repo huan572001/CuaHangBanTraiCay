@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="190dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    android:id="@+id/cardTypeProduct"
+    app:cardCornerRadius="15dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/card_border"
+
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_product_type"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/huan2" />
+
+            <TextView
+                android:id="@+id/tv_discount"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="0dp"
+                android:background="@drawable/baseline_turned_in_24"
+                android:backgroundTint="#FFC105"
+                android:gravity="center"
+                android:text="huan"
+                android:textColor="#FB0000"
+                android:textSize="8dp"
+                />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_name_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="huan"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            >
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="15dp"
+                android:text="huan" />
+
+            <TextView
+                android:id="@+id/tv_quantity_sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="15dp"
+                android:text="huan" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
