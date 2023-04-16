@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/mn_DangNhap"
         android:icon="@drawable/logo"
@@ -9,7 +10,8 @@
         android:icon="@drawable/logo"
         android:title="Cài đặt" />
     <item
-        android:id="@+id/mm_Logout"
-        android:icon="@drawable/logo"
-        android:title="Logout" />
+        android:id="@+id/cart_action"
+        android:orderInCategory="100"
+        android:title="Cart"
+        app:showAsAction="always" />
 </menu>
