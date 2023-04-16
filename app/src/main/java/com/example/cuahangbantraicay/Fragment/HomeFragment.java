@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cuahangbantraicay.activity.MainActivity;
@@ -88,7 +90,7 @@ public class HomeFragment extends Fragment {
             }
         });
         scheduleSlider();
-
+        onCreateViewFragmentFillterProduct();
         return view;
     }
     public void scheduleSlider() {
@@ -134,5 +136,11 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Home");
+    }
+    private void onCreateViewFragmentFillterProduct(){
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.fragment_fillter_product, new FragmentHomeProduct());
+        transaction.commit();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.cuahangbantraicay.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,6 +24,8 @@ public class WelcomeActivity extends AppCompatActivity {
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
     Timer timer;
+    SharedPreferences sharedPreferences;
+
     int page_position = 0;
     private int dotscount;
     private ImageView[] dots;
@@ -86,6 +89,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
         scheduleSlider();
+        CheckLogin();
     }
 
     public void scheduleSlider() {
@@ -125,8 +129,16 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void onLetsClicked(View view) {
-        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        startActivity(new Intent(getApplicationContext(), DangNhap.class));
         finish();
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    private void CheckLogin(){
+        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", null);
+        if(token!=null){
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 }

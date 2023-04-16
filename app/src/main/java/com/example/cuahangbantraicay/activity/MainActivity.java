@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -103,6 +104,10 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_logout:
+                SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("token");
+                editor.apply();
                 startActivity(new Intent(getApplicationContext(), DangNhap.class));
                 break;
 
