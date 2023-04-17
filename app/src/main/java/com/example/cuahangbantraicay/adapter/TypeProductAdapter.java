@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,9 +25,11 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
 
     private Context mContext;
     private List<Category> mListTypeProduct;
+    String displaytType;
 
-    public TypeProductAdapter(Context mContext) {
+    public TypeProductAdapter(Context mContext, String displaytType) {
         this.mContext = mContext;
+        this.displaytType = displaytType;
     }
 
     public void setData(List<Category> list) {
@@ -38,8 +41,13 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
     @NonNull
     @Override
     public TypeProductViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_list_type_product, parent, false);
+        if (displaytType.equals("1")) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_list_type_product, parent, false);
+            return new TypeProductViewHoder(view);
+        }
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_type, parent, false);
         return new TypeProductViewHoder(view);
+
     }
 
     @Override
@@ -52,7 +60,7 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
             public void onClick(View view) {
 
                 Intent intent = new Intent(mContext, DetailTypeProduct.class);
-                intent.putExtra("idCategory",product.getId());
+                intent.putExtra("idCategory", product.getId());
                 mContext.startActivity(intent);
             }
         });
@@ -61,7 +69,7 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
 
     @Override
     public int getItemCount() {
-        if(mListTypeProduct!=null)return mListTypeProduct.size();
+        if (mListTypeProduct != null) return mListTypeProduct.size();
         return 0;
     }
 
@@ -69,10 +77,17 @@ public class TypeProductAdapter extends RecyclerView.Adapter<TypeProductAdapter.
         private LinearLayout ll_type_product;
         private TextView name_product;
 
+        private ImageView img_type;
         public TypeProductViewHoder(@NonNull View itemView) {
             super(itemView);
-            ll_type_product=itemView.findViewById(R.id.LL_type_Product);
-            name_product=itemView.findViewById(R.id.tv_name_type_product);
+            if (displaytType.equals("1")) {
+                ll_type_product = itemView.findViewById(R.id.LL_type_Product);
+                name_product = itemView.findViewById(R.id.tv_name_type_product);
+            }else {
+                ll_type_product=itemView.findViewById(R.id.ll_type);
+                name_product=itemView.findViewById(R.id.tv_name_type);
+                img_type=itemView.findViewById(R.id.img_type);
+            }
         }
     }
 }

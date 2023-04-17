@@ -21,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.Fragment.CategoryFrament;
+import com.example.cuahangbantraicay.Fragment.NewProductFragment;
+import com.example.cuahangbantraicay.Fragment.PopularProductFragment;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Fragment.HomeFragment;
 import com.example.cuahangbantraicay.Fragment.ProfileFragment;
@@ -86,13 +89,13 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_new_product:
-                replaceFragment(new ProfileFragment());
+                replaceFragment(new NewProductFragment());
                 break;
             case R.id.nav_popular_products:
-                replaceFragment(new ProfileFragment());
+                replaceFragment(new PopularProductFragment());
                 break;
             case R.id.nav_category:
-                replaceFragment(new ProfileFragment());
+                replaceFragment(new CategoryFrament());
                 break;
             case R.id.nav_search:
                 replaceFragment(new ProfileFragment());
