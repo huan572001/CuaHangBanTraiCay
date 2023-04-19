@@ -30,7 +30,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_order,parent,false);
-
         return new ViewHolder(inflate);
     }
 
@@ -56,7 +55,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         return listOrder.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtStatus,txtDate,txtAddress,txtMDH;
+        TextView txtStatus,txtDate,txtAddress,txtMDH,txtCountOrder;
         ConstraintLayout mainLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +63,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             txtDate=itemView.findViewById(R.id.txtDate);
             txtStatus=itemView.findViewById(R.id.txtStatus);
             txtMDH=itemView.findViewById(R.id.txtMDH);
+            txtCountOrder=itemView.findViewById(R.id.txtCountOrder);
             mainLayout=itemView.findViewById(R.id.OrderLayout);
         }
     }

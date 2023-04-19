@@ -20,11 +20,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DangNhap extends AppCompatActivity {
-    Button DangNhap;
+    Button DangNhap,btnCart,btnOrder;
     TextView QuenMK,DK;
     EditText UserName,Password;
     private  void setControl() {
         DangNhap=findViewById(R.id.DN);
+        btnCart=findViewById(R.id.google);
+        btnOrder=findViewById(R.id.apple);
         UserName=findViewById(R.id.username);
         Password=findViewById(R.id.password);
         QuenMK=findViewById(R.id.quenMK);
@@ -56,6 +58,18 @@ public class DangNhap extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DangNhap.this, com.example.cuahangbantraicay.activity.QuenMK.class);
                 startActivity(intent);
+            }
+        });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,CartActivity.class));
+            }
+        });
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,MyOrderActivity.class));
             }
         });
     }
@@ -90,7 +104,7 @@ public class DangNhap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
 
         setContentView(R.layout.dang_nhap);
         setControl();

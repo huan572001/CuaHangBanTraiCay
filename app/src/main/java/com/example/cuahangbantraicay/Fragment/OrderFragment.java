@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -27,7 +28,7 @@ public class OrderFragment  extends Fragment {
     JSONObject response = new JSONObject();
     JSONArray data = new JSONArray();
     ArrayList<Order>listOrder=new ArrayList<>();
-
+    TextView txtCountOrder;
     Order order = new Order();
     Gson gson;
 
@@ -43,7 +44,7 @@ public class OrderFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view =inflater.inflate(R.layout.fragment_order,container,false);
         recyclerView=view.findViewById(R.id.orderView);
-
+        txtCountOrder=view.findViewById(R.id.txtCountOrder);
         callApi();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

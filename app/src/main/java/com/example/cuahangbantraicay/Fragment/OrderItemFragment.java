@@ -1,5 +1,6 @@
 package com.example.cuahangbantraicay.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -8,10 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahangbantraicay.activity.CartActivity;
 import com.example.cuahangbantraicay.adapter.OrderItemAdapter;
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
@@ -32,7 +35,7 @@ public class OrderItemFragment extends Fragment {
     ArrayList<Order_item> listOrderItem = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    TextView textView23;
+    TextView txtTotal,btnBack,btnCart;
     Integer order_id;
     public OrderItemFragment(Integer order_id){
         this.order_id= order_id;
@@ -41,7 +44,23 @@ public class OrderItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_my_order,container,false);
         recyclerView=view.findViewById(R.id.viewODIT);
-        textView23=view.findViewById(R.id.textView23);
+        txtTotal=view.findViewById(R.id.txtTotalOrder);
+        btnBack=view.findViewById(R.id.btnBackOrder);
+        btnCart=view.findViewById(R.id.btnCart);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frameOrder,new OrderFragment());
+                ft.commit();
+            }
+        });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), CartActivity.class));
+            }
+        });
         callApi(order_id);
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -72,7 +91,7 @@ public class OrderItemFragment extends Fragment {
             e.printStackTrace();
         }
         Gson gson= new Gson();
-
+        Double total = Double.valueOf(0);
         for (int i = 0; i < data.length(); i++) {
             order_item= new Order_item();
             order_item.setOrder_id(order_id);
@@ -84,9 +103,10 @@ public class OrderItemFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            total+=order_item.getPrice()*order_item.getQuantity();
             listOrderItem.add(order_item);
         }
-
+        txtTotal.setText("Total: "+total+"$");
         adapter = new OrderItemAdapter(listOrderItem,getContext());
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);

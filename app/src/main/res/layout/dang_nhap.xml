@@ -97,21 +97,23 @@
                     />
 
                 <android.widget.Button
+                    android:id="@+id/apple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tiếp tục vớiApple"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/button"
                     android:backgroundTint="#000000"
-                    android:textColor="#FFF"/>
+                    android:text="Tiếp tục vớiApple"
+                    android:textColor="#FFF" />
 
                 <android.widget.Button
+                    android:id="@+id/google"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button"
                     android:layout_marginTop="12dp"
-                    android:text="Tiếp tục với Google"
-                    android:backgroundTint="#FFFFFF"/>
+                    android:background="@drawable/button"
+                    android:backgroundTint="#FFFFFF"
+                    android:text="Tiếp tục với Google" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
