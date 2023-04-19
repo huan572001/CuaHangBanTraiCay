@@ -9,80 +9,64 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.bumptech.glide.Glide;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.activity.DetailsProduct;
 
-
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHoder> {
+
     private Context mContext;
-    private List<Product> ListProduct;
+    private List<Product> mListFillterProduct;
 
     public ProductAdapter(Context mContext) {
         this.mContext = mContext;
-
     }
 
     public void setData(List<Product> list) {
-
-        this.ListProduct = list;
+        this.mListFillterProduct = list;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ProductViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_detail_a_type_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_list_filter_product, parent, false);
         return new ProductViewHoder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductViewHoder holder, int position) {
-        Product product = ListProduct.get(position);
-        System.out.println(product.getDiscout()+"===============================");
+    public void onBindViewHolder(@NonNull ProductAdapter.ProductViewHoder holder, int position) {
+        Product product = mListFillterProduct.get(position);
         if (product == null) return;
-        holder.nameProduct.setText(product.getName());
-        holder.price.setText("giá "+String.valueOf(product.getPrice_sell()));
-        holder.discount.setText(String.valueOf(product.getDiscout())+"%");
-        holder.quantity_sold.setText("Đã bán "+(String.valueOf(product.getQuantity_sold())));
-        System.out.println(product.getImage());
-        Glide.with(mContext).load(product.getImage()).into(holder.imgProduct);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.textView.setText(product.getName());
+        holder.imgUser.setImageResource(product.getResourceId());
+        holder.imgUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetailsProduct.class);
-                intent.putExtra("idProduct",product.getId());
+                intent.putExtra("a",product);
                 mContext.startActivity(intent);
             }
         });
     }
-
     @Override
     public int getItemCount() {
-        if (ListProduct != null) return ListProduct.size();
+        if(mListFillterProduct!=null)return mListFillterProduct.size();
         return 0;
     }
 
     public class ProductViewHoder extends RecyclerView.ViewHolder {
-        private TextView nameProduct, price, discount, quantity_sold;
-        private ImageView imgProduct;
-        private CardView cardView;
+        private ImageView imgUser;
+        private TextView textView;
+
         public ProductViewHoder(@NonNull View itemView) {
             super(itemView);
-            cardView= itemView.findViewById(R.id.cardTypeProduct);
-            imgProduct = itemView.findViewById(R.id.img_product_type);
-            nameProduct = itemView.findViewById(R.id.tv_name_product);
-            price = itemView.findViewById(R.id.tv_price);
-            discount = itemView.findViewById(R.id.tv_discount);
-            quantity_sold = itemView.findViewById(R.id.tv_quantity_sold);
-
+            imgUser = itemView.findViewById(R.id.imgSP);
+            textView = itemView.findViewById(R.id.tenSP);
         }
     }
 }

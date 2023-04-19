@@ -1,20 +1,25 @@
 package com.example.cuahangbantraicay.Modal;
 
-public class Category {
-    private int Id;
-    private String name;
+import java.io.Serializable;
 
-    public Category(int id, String name) {
-        Id = id;
+public class Category implements Serializable {
+    private int id;
+    private String name;
+    public Category(int id,String name){
+        this.id = id;
         this.name = name;
     }
 
+    public Category() {
+
+    }
+
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -24,4 +29,5 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+
 }

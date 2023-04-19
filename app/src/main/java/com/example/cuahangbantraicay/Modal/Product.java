@@ -5,39 +5,18 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private int id;
     private String name;
+
     private String image;
     private float price_in;
     private float price_sell;
-    private String content;
+    private  String content;
     private int category_id;
-    private int discout;
+    private int discount;
     private int quantity;
     private int quantity_sold;
-    private Boolean status;
+    private boolean status;
 
-    public Product(){}
-
-    public Product(int id, String name, String image,  float price_sell, int discout, int quantity_sold, Boolean status) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.price_sell = price_sell;
-        this.discout = discout;
-        this.quantity_sold = quantity_sold;
-        this.status = status;
-    }
-    public Product(int id, String name, String image, Float price_in, Float price_sell, String content, int category_id, int discout, int quantity, int quantity_sold, Boolean status) {
-        this.id = id;
-        this.name = name;
-        this.image = image;
-        this.price_in = price_in;
-        this.price_sell = price_sell;
-        this.content = content;
-        this.category_id = category_id;
-        this.discout = discout;
-        this.quantity = quantity;
-        this.quantity_sold = quantity_sold;
-        this.status = status;
+    public Product() {
     }
 
     public int getId() {
@@ -46,14 +25,6 @@ public class Product implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getImage() {
@@ -68,7 +39,7 @@ public class Product implements Serializable {
         return price_in;
     }
 
-    public void setPrice_in(Float price_in) {
+    public void setPrice_in(float price_in) {
         this.price_in = price_in;
     }
 
@@ -96,12 +67,12 @@ public class Product implements Serializable {
         this.category_id = category_id;
     }
 
-    public int getDiscout() {
-        return discout;
+    public int getDiscount() {
+        return discount;
     }
 
-    public void setDiscout(int discout) {
-        this.discout = discout;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
     public int getQuantity() {
@@ -120,11 +91,33 @@ public class Product implements Serializable {
         this.quantity_sold = quantity_sold;
     }
 
-    public Boolean getStatus() {
+    public Product(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+    }
+
+    public int getResourceId() {
+        return id;
+    }
+
+    public void setResourceId(int resourceId) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }

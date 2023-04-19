@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class LoginAPI {
 
 
-    public static void Login(Context context, VolleyCallback callBack, String username, String password) throws JSONException {
+    public static void getUsers(Context context, VolleyCallback callBack, String username, String password) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         String url = BASE_URL.BASE_URL+ "login";
         JSONObject body = new JSONObject();
@@ -28,7 +28,11 @@ public class LoginAPI {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        callBack.onSuccess(response);
+                        try {
+                            callBack.onSuccess(response);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }, new Response.ErrorListener() {
 
