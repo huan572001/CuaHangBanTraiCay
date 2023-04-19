@@ -9,94 +9,118 @@
     android:padding="16dp"
     >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="650dp">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/img_product_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="192dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/logo" />
-                <TextView
-                    android:id="@+id/tv_discount_in_Detail"
-                    android:layout_width="75dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/baseline_turned_in_24"
-                    android:backgroundTint="#FFC105"
-                    android:gravity="center"
-                    android:text="huan"
-                    android:textColor="#FB0000"
-                    android:textSize="12dp"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tv_name_product_detail"
-                    android:layout_width="320dp"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="12dp"
-                    android:text="5kg"
-                    android:textSize="16dp"
-                    android:textStyle="bold"
-                    />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
                 >
 
-                <TextView
-                    android:id="@+id/tv_price_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="0.0"
-                    android:textColor="#EF0909"
-                    android:textSize="18dp" />
 
-                <TextView
-                    android:id="@+id/tv_quantity_sold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="10dp"
-                    android:text="Đã bán" />
-            </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img_product_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="192dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/logo" />
+                    <TextView
+                        android:id="@+id/tv_discount_in_Detail"
+                        android:layout_width="75dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/baseline_turned_in_24"
+                        android:backgroundTint="#FFC105"
+                        android:gravity="center"
+                        android:text="huan"
+                        android:textColor="#FB0000"
+                        android:textSize="12dp"
+                        />
+                </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="8dp"
-                android:background="#F2F2F7" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mô tả sản phẩm"
-                android:textStyle="bold"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#F2F2F7" />
-            <TextView
-                android:id="@+id/tv_content_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="3 bộ phận cực quý giá của con lợn, vừa ngon vừa giàu dinh dưỡng nhưng ít người biết mà mua
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_name_product_detail"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="12dp"
+                        android:text="5kg"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_price_product"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="0.0"
+                        android:textColor="#EF0909"
+                        android:textSize="18dp" />
+
+
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/stars"/>
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="12dp"
+                        android:background="#F2F2F7"
+                        android:layout_margin="5dp"/>
+                    <TextView
+                        android:id="@+id/tv_quantity_sold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:text="Đã bán" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#F2F2F7" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mô tả sản phẩm"
+                    android:textStyle="bold"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#F2F2F7" />
+                <TextView
+                    android:id="@+id/tv_content_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3 bộ phận cực quý giá của con lợn, vừa ngon vừa giàu dinh dưỡng nhưng ít người biết mà mua
 Ăn thịt lợn nhiều nhưng chưa chắc bạn đã biết đâu là phần bổ dưỡng nhất của cơn lợn.
 4 biểu hiện thường gặp khi ngủ có thể là dấu hiệu cảnh báo nhồi máu não sắp xảy ra / Những sai lầm khi ăn lẩu khiến bạn tổn thọ, bỏ ngay trước khi quá muộn
 
@@ -118,17 +142,37 @@ Dưới đây là 3 bộ phận của con lợn được đánh giá là bổ d�
 Xương lưỡi liềm
 
 Xương lưỡi liềm là phần ngon nhất của con lợn. Nó nằm ở phần chân trước của lợn, nơi kết nối giữa xương ống và xương quạt. Phần xương này hình cong vát tương tự lưỡi liềm nên được gọi là xương lưỡi liềm."/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#F2F2F7" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Đánh giá sản phẩm"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rcv_Evaluate"
+                    />
+            </LinearLayout>
 
+        </ScrollView>
 
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-
-    <Button
-        android:id="@+id/btn_buy"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mua" />
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mua"
+            />
+    </LinearLayout>
+
 
 
 </LinearLayout>

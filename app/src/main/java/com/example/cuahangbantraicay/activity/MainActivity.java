@@ -83,18 +83,22 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new HomeFragment());
                 break;
             case R.id.nav_profile:
+                setTitle("PROFILE");
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_offers:
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_new_product:
+                setTitle("NEW PRODUCT");
                 replaceFragment(new NewProductFragment());
                 break;
             case R.id.nav_popular_products:
+                setTitle("POPULAR");
                 replaceFragment(new PopularProductFragment());
                 break;
             case R.id.nav_category:
+                setTitle("CATEGORY");
                 replaceFragment(new CategoryFrament());
                 break;
             case R.id.nav_search:
