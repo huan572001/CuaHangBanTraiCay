@@ -150,6 +150,46 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
+    public static void getListOrderByUser(Context context, final VolleyCallback callback ){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url="http://10.0.2.2:3000/api/order/getListOrder/1";
+        JSONObject body = new JSONObject();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        callback.onSuccessResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        );
+        queue.add(jsonObjectRequest);
+    }
+
+    public static void getOrderItem(Context context,final VolleyCallback callback,Integer order_id){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url ="http://10.0.2.2:3000/api/order/getOrderItem/"+order_id;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        callback.onSuccessResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(jsonObjectRequest);
+    }
+
 
     public interface VolleyCallback {
 

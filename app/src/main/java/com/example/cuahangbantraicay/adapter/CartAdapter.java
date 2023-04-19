@@ -50,7 +50,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         Integer i = position;
         holder.txtQty.setText(String.valueOf(cartList.get(position).getQuantity()));
         holder.itemName.setText(cartList.get(position).getProducts().getName());
-        holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.shadow_bg));
+        holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.border));
         String url= cartList.get(position).getProducts().getImage();
         Glide.with(holder.itemView.getContext())
                 .load(url)
