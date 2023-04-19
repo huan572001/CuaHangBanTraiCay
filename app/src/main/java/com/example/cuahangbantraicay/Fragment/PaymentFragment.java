@@ -9,7 +9,8 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.grocerystore.R;
+import com.example.cuahangbantraicay.R;
+
 
 public class PaymentFragment extends Fragment {
     TextView btnPay;
