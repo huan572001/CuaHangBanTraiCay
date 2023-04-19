@@ -64,7 +64,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             txtStatus=itemView.findViewById(R.id.txtStatus);
             txtMDH=itemView.findViewById(R.id.txtMDH);
             txtCountOrder=itemView.findViewById(R.id.txtCountOrder);
-            mainLayout=itemView.findViewById(R.id.OrderLayout);
+            mainLayout=itemView.findViewById(R.id.statisticLayout);
         }
     }
 }

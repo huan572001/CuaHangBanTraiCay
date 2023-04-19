@@ -88,13 +88,13 @@
                     android:textColor="#fff"/>
 
                 <android.widget.Button
+                    android:id="@+id/facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button"
                     android:layout_marginTop="12dp"
-                    android:text="Tiếp tục với Facebook"
+                    android:background="@drawable/button"
                     android:backgroundTint="#4267B2"
-                    />
+                    android:text="Tiếp tục với Facebook" />
 
                 <android.widget.Button
                     android:id="@+id/apple"

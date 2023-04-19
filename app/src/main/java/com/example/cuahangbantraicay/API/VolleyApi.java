@@ -189,6 +189,24 @@ public class VolleyApi {
                 });
         queue.add(jsonObjectRequest);
     }
+    public static void getAllOrder(Context context, final VolleyCallback callback){
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        String url ="http://10.0.2.2:3000/api/statistic/getAllOrder";
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        callback.onSuccessResponse(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        requestQueue.add(jsonObjectRequest);
+    }
 
 
     public interface VolleyCallback {

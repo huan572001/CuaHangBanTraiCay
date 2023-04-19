@@ -20,11 +20,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DangNhap extends AppCompatActivity {
-    Button DangNhap,btnCart,btnOrder;
+    Button DangNhap,btnCart,btnOrder,btnStatistic;
     TextView QuenMK,DK;
     EditText UserName,Password;
     private  void setControl() {
         DangNhap=findViewById(R.id.DN);
+        btnStatistic=findViewById(R.id.facebook);
         btnCart=findViewById(R.id.google);
         btnOrder=findViewById(R.id.apple);
         UserName=findViewById(R.id.username);
@@ -70,6 +71,12 @@ public class DangNhap extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(DangNhap.this,MyOrderActivity.class));
+            }
+        });
+        btnStatistic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,StatisticActivity.class));
             }
         });
     }
