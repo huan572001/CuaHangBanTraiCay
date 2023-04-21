@@ -5,8 +5,8 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public interface VolleyCallback {
-    void onSuccess(JSONObject result);
+public interface VolleyCallback1 {
+    void onSuccess(JSONObject result) throws JSONException;
 
-    void onError(JSONObject errorMessage);
+    void onError(VolleyError errorMessage);
 }
