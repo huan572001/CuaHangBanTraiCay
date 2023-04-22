@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cuahangbantraicay.Fragment.CategoryFrament;
+import com.example.cuahangbantraicay.Fragment.EvaluateFragment;
 import com.example.cuahangbantraicay.Fragment.NewProductFragment;
 import com.example.cuahangbantraicay.Fragment.PopularProductFragment;
 import com.example.cuahangbantraicay.R;
@@ -109,6 +110,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_my_cart:
                 replaceFragment(new ProfileFragment());
+                break;
+            case R.id.nav_Evaluate:
+                replaceFragment(new EvaluateFragment());
                 break;
             case R.id.nav_logout:
                 SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);

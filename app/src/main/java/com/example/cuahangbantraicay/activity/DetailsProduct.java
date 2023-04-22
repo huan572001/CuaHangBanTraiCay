@@ -1,6 +1,7 @@
 package com.example.cuahangbantraicay.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -35,9 +37,9 @@ import java.util.Locale;
 public class DetailsProduct extends AppCompatActivity {
     int idProduct;
     ImageView img;
-    TextView tv_name, tv_content, tv_quantity_sold, tv_price_product, tv_discout;
-    Button btn_buy;
+    TextView tv_name, tv_content, tv_quantity_sold, tv_price_product, tv_discout,tv_price_cell,tv_buy;
 
+    CardView cardEcakuate;
     RecyclerView rcv_ecaluate;
     EcaluateAdapter ecaluateAdapter;
 
@@ -79,8 +81,10 @@ public class DetailsProduct extends AppCompatActivity {
         tv_content = findViewById(R.id.tv_content_product);
         tv_quantity_sold = findViewById(R.id.tv_quantity_sold);
         tv_price_product = findViewById(R.id.tv_price_product);
-        btn_buy = findViewById(R.id.btn_buy);
+        tv_buy = findViewById(R.id.tv_buy);
         rcv_ecaluate = findViewById(R.id.rcv_Evaluate);
+        cardEcakuate=findViewById(R.id.CardEcaluate);
+        tv_price_cell=findViewById(R.id.tv_price_cell);
     }
 
     private void getProductById() {
@@ -97,7 +101,10 @@ public class DetailsProduct extends AppCompatActivity {
                             tv_content.setText(data.getString("content"));
                             tv_discout.setText((String) String.valueOf(data.getInt("discout")) + "%");
                             tv_quantity_sold.setText("Đã bán: " + String.valueOf(data.getInt("quantity_sold")));
-                            tv_price_product.setText(String.valueOf(data.getDouble("price_sell")));
+                            tv_price_product.setText(String.valueOf(data.getDouble("price_sell"))+" vnd");
+                            tv_price_product.setPaintFlags(tv_price_product.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                            int priceCell= (int) (data.getDouble("price_sell")*(100-data.getInt("discout"))/100);
+                            tv_price_cell.setText(String.valueOf(priceCell)+" vnd");
                             setTitle(data.getString("name").toUpperCase());
                         }
                     } catch (JSONException e) {
@@ -142,6 +149,7 @@ public class DetailsProduct extends AppCompatActivity {
 
                                 list.add(ecaluate);
                             }
+
                             ecaluateAdapter.setData(list);
                         }
                     } catch (JSONException e) {

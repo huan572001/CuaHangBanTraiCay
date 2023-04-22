@@ -58,6 +58,14 @@
             android:title="My Cart" />
     </group>
     <group
+        android:id="@+id/nav_communication_group5"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Evaluate"
+            android:icon="@drawable/baseline_star_24"
+            android:title="Evaluate"/>
+    </group>
+    <group
         android:id="@+id/nav_communication_group4"
         android:checkableBehavior="single">
         <item
