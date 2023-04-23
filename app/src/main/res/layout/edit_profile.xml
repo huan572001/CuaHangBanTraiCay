@@ -82,13 +82,23 @@
                     style="@style/editText"
                     android:layout_width="match_parent" />
 
+
+
                 <Button
                     android:id="@+id/btnSaveEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lưu thay đổi"/>
 
+                <TextView
+                    android:id="@+id/tv_kq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    />
+
             </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>
