@@ -75,15 +75,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:text="Địa chỉ" />
-                <EditText
-                    android:id="@+id/user_address"
-                    style="@style/editText"
-                    android:layout_width="match_parent" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
                     android:text="Số điện thoại" />
 
                 <EditText

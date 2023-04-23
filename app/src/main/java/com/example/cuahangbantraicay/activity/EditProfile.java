@@ -12,13 +12,14 @@ import com.example.cuahangbantraicay.R;
 
 public class EditProfile extends AppCompatActivity {
     Button btnSaveEdit;
-    TextView user_fname, user_address, user_phone, user_male,user_female, user_birthday, user_email;
+    TextView user_fname, user_phone, user_male,user_female, user_birthday, user_email;
 
+    String name, email, birthday, phone;
+    Integer gender;
 
     public void setControl(){
         btnSaveEdit = findViewById(R.id.btnSaveEdit);
         user_fname = findViewById(R.id.user_fullname);
-        user_address = findViewById(R.id.user_email);
         user_birthday = findViewById(R.id.user_birthday);
         user_phone = findViewById(R.id.user_phone);
         user_male = findViewById(R.id.user_male);

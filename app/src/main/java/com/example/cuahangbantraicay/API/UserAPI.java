@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class UserAPI {
     public static void getUser(Context context, VolleyCallback callBack,int id) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String url = "https://batdongsanabc.000webhostapp.com/mob403lab3/array_json_new.json";
+        String url = "https://mocki.io/v1/3f71aebd-700a-4510-9857-99a39167cea7";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -30,9 +30,7 @@ public class UserAPI {
             public void onErrorResponse(VolleyError error) {
 
             }
-
         }) {
-
         };
         requestQueue.add(request);
     }

@@ -20,15 +20,16 @@ import org.json.JSONObject;
 public class Profile extends AppCompatActivity {
     int idUser;
     Button edit;
-    TextView tv_fname, tv_address, tv_phone, tv_gender, tv_birthday, tv_email;
-
+    TextView tv_fname, tv_phone, tv_gender, tv_birthday, tv_email;
+    String name, email ,phone, birthday;
+    Integer gender;
 
     public void setControl(){
         edit = findViewById(R.id.edit_profile);
         tv_fname = findViewById(R.id.tv_fname);
-        tv_address = findViewById(R.id.tv_address);
+        tv_birthday = findViewById(R.id.tv_birthday);
         tv_phone = findViewById(R.id.tv_phone);
-        tv_gender = findViewById(R.id.tv_birthday);
+        tv_gender = findViewById(R.id.tv_gender);
         tv_email = findViewById(R.id.tv_email);
     }
 
@@ -52,14 +53,21 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject result) {
                     try {
-                        if((Boolean) result.get("success")){
-                            JSONObject data= result.getJSONObject("data");
-                            tv_fname.setText(data.getString("name"));
-                            tv_address.setText(data.getString("content"));
-                            tv_birthday.setText(data.getString("content"));
-                            tv_gender.setText(data.getString("content"));
-                            tv_email.setText(data.getString("content"));
-                            tv_phone.setText(data.getString("content"));
+                        if((Boolean)result.get("success")){
+                            JSONObject data = result.getJSONObject("data");
+                            name  = data.getString("name");
+                            gender  = data.getInt("gender");
+                            email  = data.getString("email");
+                            phone  = data.getString("phone");
+                            birthday  = data.getString("birthday");
+
+                            tv_fname.setText(name);
+                            if(gender == 1){
+                                tv_gender.setText("Nam");
+                            }else tv_gender.setText("Nữ");
+                            tv_email.setText(email);
+                            tv_phone.setText(phone);
+                            tv_birthday.setText(birthday);
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
