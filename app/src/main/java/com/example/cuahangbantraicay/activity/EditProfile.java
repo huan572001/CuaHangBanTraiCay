@@ -2,10 +2,13 @@ package com.example.cuahangbantraicay.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,13 +28,15 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class EditProfile extends AppCompatActivity {
-    int idUser;
+    int idUser = 1 ;
     Button btnSaveEdit;
-    TextView user_fname, user_phone, user_birthday, user_email,tv_kq;
+    EditText user_fname, user_phone, user_birthday, user_email;
+    TextView tv_kq;
     CheckBox user_male, user_female;
     String name, email, birthday, phone;
     Integer gender;
@@ -60,6 +65,54 @@ public class EditProfile extends AppCompatActivity {
                 if(user_female.isChecked()) user_male.setChecked(false);
             }
         });
+        user_birthday.addTextChangedListener(new TextWatcher() {
+            private String current = "";
+            private String yyyymmdd = "YYYYMMDD";
+            private Calendar cal = Calendar.getInstance();
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().equals(current)) {
+                    String clean = s.toString().replaceAll("[^\\d.]", "");
+                    String cleanC = current.replaceAll("[^\\d.]", "");
+
+                    int cl = clean.length();
+                    int sel = cl;
+                    for (int i = 2; i <= cl && i < 6; i += 2) {
+                        sel++;
+                    }
+                    if (clean.equals(cleanC)) sel--;
+                    if (clean.length() < 8){
+                        clean = clean + yyyymmdd.substring(clean.length());
+                    }else{
+                        int year = Integer.parseInt(clean.substring(0,4));
+                        int mon  = Integer.parseInt(clean.substring(4,6));
+                        int day  = Integer.parseInt(clean.substring(6,8));
+
+                        if(mon > 12) mon = 12;
+                        cal.set(Calendar.MONTH, mon-1);
+
+                        year = (year<1900)?1900:(year>2100)?2100:year;
+                        cal.set(Calendar.YEAR, year);
+
+                        day = (day > cal.getActualMaximum(Calendar.DATE))? cal.getActualMaximum(Calendar.DATE):day;
+                        clean = String.format("%02d%02d%02d",year, mon, day);
+                    }
+
+                    clean = String.format("%s-%s-%s", clean.substring(0, 4),
+                            clean.substring(4, 6),
+                            clean.substring(6, 8));
+
+                    sel = sel < 0 ? 0 : sel;
+                    current = clean;
+                    user_birthday.setText(current);
+                    user_birthday.setSelection(sel < current.length() ? sel : current.length());
+                }
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
         btnSaveEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +131,7 @@ public class EditProfile extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        tv_kq.setText("Thay đổi thất bại");
+                        tv_kq.setText("Thay đổi thất bại"+ user_birthday.getText().toString());
 
                     }
                 }){

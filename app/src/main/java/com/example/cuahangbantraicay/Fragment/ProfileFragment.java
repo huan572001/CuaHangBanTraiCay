@@ -24,7 +24,7 @@ import org.json.JSONObject;
 
 public class ProfileFragment extends Fragment {
 
-    int idUser;
+    int idUser = 1;
     Button edit;
     TextView tv_fname, tv_phone, tv_gender, tv_birthday, tv_email;
     String name, email ,phone, birthday;
@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment {
         setControl(view);
         setEvent();
         getUser();
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Profile");
     }
 
@@ -62,6 +61,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
     private void getUser(){
         try {
             UserAPI.getUser(getContext(), new VolleyCallback() {

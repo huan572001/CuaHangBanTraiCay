@@ -18,7 +18,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Profile extends AppCompatActivity {
-    int idUser;
+    int idUser = 1;
     Button edit;
     TextView tv_fname, tv_phone, tv_gender, tv_birthday, tv_email;
     String name, email ,phone, birthday;
