@@ -14,7 +14,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="10dp">
                 <TextView
                     android:id="@+id/tv_name_user"
                     android:layout_width="wrap_content"
@@ -23,11 +24,12 @@
                     />
 
                 <RatingBar
+                    android:id="@+id/rating"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rating"
                     android:isIndicator="true"
-                    />
+                    android:progressTint="#F6DD01" />
                 <TextView
                     android:id="@+id/tv_comment"
                     android:layout_width="match_parent"
