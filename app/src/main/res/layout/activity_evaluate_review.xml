@@ -62,7 +62,7 @@
             android:background="#E6E6E6"/>
 
         <RatingBar
-            android:id="@+id/rating"
+            android:id="@+id/rating_review"
             style="@android:style/Widget.DeviceDefault.Light.RatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:numStars="5"
             android:progressTint="#F3DB06"
             android:rating="5"
-            android:stepSize="0.1" />
+            android:stepSize="0.5" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,8 +92,15 @@
                     android:layout_height="wrap_content"
                     android:text="Thêm Hình ảnh"
                     android:textColor="#F60404"/>
+
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/img_Review"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
