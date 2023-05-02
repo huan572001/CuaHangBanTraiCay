@@ -26,6 +26,7 @@ public class HaveEvaluatedAdapter extends RecyclerView.Adapter<HaveEvaluatedAdap
     }
 
     public void setData(List<String> list) {
+        System.out.println(list.size());
         this.listHaveEvaluateds = list;
         notifyDataSetChanged();
     }
@@ -33,7 +34,7 @@ public class HaveEvaluatedAdapter extends RecyclerView.Adapter<HaveEvaluatedAdap
     @Override
     public EvaluatedViewHoder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_waiting_for_review, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.child_have_evaluated, parent, false);
         return new HaveEvaluatedAdapter.EvaluatedViewHoder(view);
     }
 
@@ -48,17 +49,10 @@ public class HaveEvaluatedAdapter extends RecyclerView.Adapter<HaveEvaluatedAdap
         return 0;
     }
     public class EvaluatedViewHoder extends RecyclerView.ViewHolder {
-        ImageView img_WFR;
-        TextView tv_name,tv_price,tv_quality,tv_total;
-        Button btn_review;
+
         public EvaluatedViewHoder(@NonNull View itemView) {
             super(itemView);
-            img_WFR=itemView.findViewById(R.id.img_WFR);
-            tv_name=itemView.findViewById(R.id.tv_WFR_name);
-            tv_quality=itemView.findViewById(R.id.tv_WFR_quality);
-            tv_price=itemView.findViewById(R.id.tv_WFR_price);
-            tv_total=itemView.findViewById(R.id.tv_WFR_total);
-            btn_review=itemView.findViewById(R.id.btn_review);
+
         }
     }
 }
