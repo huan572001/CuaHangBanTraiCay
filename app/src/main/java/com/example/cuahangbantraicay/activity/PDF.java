@@ -45,10 +45,11 @@ public class PDF extends AppCompatActivity {
         scaleBitmap = Bitmap.createScaledBitmap(bitmap,200,200,false);
         ActivityCompat.requestPermissions(this,new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
-        createPDF();
+        String string = new String();
+        createPDF("thang3/");
     }
 
-    private void createPDF() {
+    private void createPDF(String filename) {
         btnXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,11 +101,7 @@ public class PDF extends AppCompatActivity {
 
                 myPdfDocument.finishPage(myPage);
 
-
-
-
-
-                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "/PDFs/hihi.pdf");
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),filename.concat(".pdf"));
 
 
                 try {
