@@ -89,7 +89,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
         scheduleSlider();
-        CheckLogin();
+//        CheckLogin();
     }
 
     public void scheduleSlider() {

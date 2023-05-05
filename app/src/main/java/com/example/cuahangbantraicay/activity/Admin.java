@@ -3,12 +3,19 @@ package com.example.cuahangbantraicay.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -22,12 +29,15 @@ import com.example.cuahangbantraicay.adapter.AdminProductAdapter;
 import com.example.cuahangbantraicay.adapter.CategoryAdapter;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class Admin extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     ViewFlipper viewFlipper;
     NavigationView navigationView;
+    Toolbar toolbar;
     managerProduct managerproduct = null;
 
     managerReveneu managerreveneu = null;
@@ -35,10 +45,13 @@ public class Admin extends AppCompatActivity {
     managerCategory managerCategory = null;
     AdminProductAdapter adminProductAdapter =null;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 //        getSupportActionBar().hide();
         if (ManagerProductDetail.isActive || ManagerProductCreate.isActive || AdminProductAdapter.isActive) {
             initFragment();

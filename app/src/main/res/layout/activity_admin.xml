@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.Admin"
     android:id="@+id/draw"
-    android:background="@drawable/ngocanh">
+    android:background="@drawable/background"
+    tools:openDrawer="start">
 
 
     <LinearLayout

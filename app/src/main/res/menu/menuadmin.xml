@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/product"
-        android:icon="@drawable/icon_view_list"
-        android:title="Sản phẩm">
 
-    </item>
-    <item
-        android:id="@+id/category"
-        android:title="Loại sản phẩm">
+    <group android:checkableBehavior="single">
 
-    </item>
-    <item
-        android:id="@+id/revenue"
-        android:title="Thống kê">
+        <item
+            android:id="@+id/product"
+            android:icon="@drawable/icon_view_list"
+            android:title="Sản phẩm">
 
-    </item>
-    <item
-        android:id="@+id/pdf"
-        android:title="Xuat file">
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/category"
+            android:icon="@drawable/icon_category"
+            android:title="Loại sản phẩm">
 
-    </item>
+        </item>
+
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/revenue"
+            android:icon="@drawable/icon_chart"
+            android:title="Thống kê">
+
+        </item>
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/pdf"
+            android:icon="@drawable/outline_picture_as_pdf_24"
+            android:title="Xuat file">
+
+        </item>
+    </group>
 </menu>
