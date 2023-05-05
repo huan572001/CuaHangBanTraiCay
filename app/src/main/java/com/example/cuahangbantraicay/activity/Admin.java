@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.Window;
@@ -115,6 +117,15 @@ public class Admin extends AppCompatActivity {
                                 .beginTransaction()
                                 .replace(R.id.NoiDung, new managerReveneu())
                                 .commit();
+                        break;
+                    case R.id.logout:
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("token");
+                        editor.remove("role");
+                        editor.apply();
+                        startActivity(new Intent(getApplicationContext(), DangNhap.class));
                         break;
                 }
                 if (drawerLayout.isDrawerOpen(GravityCompat.START))

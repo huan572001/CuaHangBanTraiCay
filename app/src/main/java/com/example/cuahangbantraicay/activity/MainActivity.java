@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity
                 SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.remove("token");
+                editor.remove("role");
                 editor.apply();
                 startActivity(new Intent(getApplicationContext(), DangNhap.class));
                 break;

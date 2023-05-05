@@ -21,4 +21,9 @@
         android:title="Xuat file">
 
     </item>
+    <item
+        android:id="@+id/logout"
+        android:title="logout">
+
+    </item>
 </menu>
