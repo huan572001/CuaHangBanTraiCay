@@ -109,6 +109,7 @@
                     android:textColor="#fff" />
 
                 <android.widget.Button
+                    android:id="@+id/facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -117,6 +118,7 @@
                     android:text="Tiếp tục với Facebook" />
 
                 <android.widget.Button
+                    android:id="@+id/apple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -126,6 +128,7 @@
                     android:textColor="#FFF" />
 
                 <android.widget.Button
+                    android:id="@+id/google"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

@@ -26,12 +26,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DangNhap extends AppCompatActivity {
-    Button DangNhap;
+    Button DangNhap,btnCart,btnOrder,btnStatistic;
     TextView QuenMK,DK;
     EditText UserName,Password;
     SharedPreferences sharedPreferences;
     @SuppressLint("UseCompatLoadingForDrawables")
     private  void setControl() {
+        btnStatistic=findViewById(R.id.facebook);
+        btnCart=findViewById(R.id.google);
+        btnOrder=findViewById(R.id.apple);
         DangNhap=findViewById(R.id.DN);
         UserName=findViewById(R.id.username);
         Password=findViewById(R.id.password);
@@ -86,6 +89,24 @@ public class DangNhap extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DangNhap.this, com.example.cuahangbantraicay.activity.QuenMK.class);
                 startActivity(intent);
+            }
+        });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,CartActivity.class));
+            }
+        });
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,MyOrderActivity.class));
+            }
+        });
+        btnStatistic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,StatisticActivity.class));
             }
         });
     }

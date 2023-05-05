@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/view7"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_checkout_bg"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="ORDER ITEMS"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/viewODIT"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="#333333"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtTotalOrder" />
+
+        <TextView
+            android:id="@+id/txtTotalOrder"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+
+            android:text="Total :"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_checkout_bg"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/btnBackOrder"
+                android:textColor="#FFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="BACK" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="#FFF" />
+
+            <TextView
+                android:id="@+id/btnCart"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:layout_weight="1"
+                android:text="CART" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
