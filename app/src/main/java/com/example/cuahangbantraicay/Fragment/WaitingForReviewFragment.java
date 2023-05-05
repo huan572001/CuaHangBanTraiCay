@@ -48,13 +48,13 @@ public class WaitingForReviewFragment extends Fragment  {
 
     private void getListProduct() {
         List<WaitingForReview> listNewProduct=new ArrayList<>();
-        listNewProduct.add(new WaitingForReview(1,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(2,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(3,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(4,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(5,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(6,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
-        listNewProduct.add(new WaitingForReview(7,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","hu ádh áu dhsa dhá au hau sh",60,2));
+        listNewProduct.add(new WaitingForReview(1,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(2,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(3,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(4,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(5,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(6,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
+        listNewProduct.add(new WaitingForReview(7,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
         waitingForReviewAdapter.setData(listNewProduct);
     }
 }

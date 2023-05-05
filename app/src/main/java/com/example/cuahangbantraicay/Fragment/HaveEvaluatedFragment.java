@@ -31,8 +31,14 @@ public class HaveEvaluatedFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_have_evaluated, container, false);
         setControl(view);
         createViewHaveEveluated();
+        setEvent();
         return view;
     }
+
+    private void setEvent() {
+
+    }
+
     private void setControl(View view) {
         rcv_Have_Evaluated=view.findViewById(R.id.rcv_have_evaluated);
     }

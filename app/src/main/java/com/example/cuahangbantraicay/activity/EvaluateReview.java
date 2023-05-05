@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -37,6 +38,7 @@ public class EvaluateReview extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_evaluate_review);
         setControl();
         getData();
@@ -97,6 +99,7 @@ public class EvaluateReview extends AppCompatActivity {
         }
     }
     private void setControl() {
+        setTitle("EVALUATE REVIEW");
         btn_send = findViewById(R.id.btn_send_ER);
         edt_ER = findViewById(R.id.edt_evaluate);
         cv_upload = findViewById(R.id.cv_upload_IMG);
@@ -119,5 +122,13 @@ public class EvaluateReview extends AppCompatActivity {
         tv_ER_price.setText(String.valueOf(waitingForReview.getPrice()) );
         tv_ER_quality.setText("x"+waitingForReview.getQuantity());
 
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

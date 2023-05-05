@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity
 
                 break;
             case R.id.nav_Evaluate:
+                setTitle("EVALUATE");
                 replaceFragment(new EvaluateFragment());
                 break;
             case R.id.nav_logout:
@@ -140,7 +141,13 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_navigasion, menu);
         MenuItem menuItem = menu.findItem(R.id.cart_action);
         menuItem.setIcon(Converter.convertLayoutToImage(MainActivity.this, cart_count, R.drawable.ic_shopping_basket));
-
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                startActivity(new Intent(getBaseContext(),MyOrderActivity.class));
+                return false;
+            }
+        });
         return true;
     }
     private void replaceFragment(Fragment fragment){
