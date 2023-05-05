@@ -41,6 +41,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
 
     }
+    //them vao gio hang
     public void plusQuantity(Context context,Integer u_id, Integer p_id, Integer qty){
         RequestQueue queue =Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/cart/plusQty";

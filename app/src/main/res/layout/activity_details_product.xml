@@ -164,6 +164,7 @@ Xương lưỡi liềm là phần ngon nhất của con lợn. Nó nằm ở ph�
 
 
             <ImageView
+                android:id="@+id/img_add_card"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"

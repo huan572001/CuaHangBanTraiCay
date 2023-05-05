@@ -87,18 +87,6 @@ public class DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DangNhap.this,CartActivity.class));
-            }
-        });
-        btnOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DangNhap.this,MyOrderActivity.class));
-            }
-        });
         btnStatistic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

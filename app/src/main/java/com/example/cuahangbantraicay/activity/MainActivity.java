@@ -60,11 +60,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         centerToolbarTitle(toolbar);
-
         mdrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mdrawerLayout,toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -106,10 +104,12 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_my_order:
-                replaceFragment(new ProfileFragment());
+                startActivity(new Intent(this,MyOrderActivity.class));
+
                 break;
             case R.id.nav_my_cart:
-                replaceFragment(new ProfileFragment());
+                startActivity(new Intent(this,CartActivity.class));
+
                 break;
             case R.id.nav_Evaluate:
                 replaceFragment(new EvaluateFragment());
