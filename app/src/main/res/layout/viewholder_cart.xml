@@ -40,7 +40,7 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/itemView"
-        app:srcCompat="@drawable/minus" />
+        app:srcCompat="@drawable/ic_minus" />
 
     <TextView
         android:id="@+id/txtQtyCart"
@@ -59,7 +59,7 @@
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/txtQtyCart"
         app:layout_constraintStart_toEndOf="@+id/txtQtyCart"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/ic_plus" />
 
     <ImageView
         android:id="@+id/btnDelete"

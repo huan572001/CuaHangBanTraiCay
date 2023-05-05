@@ -62,6 +62,18 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DangNhap"
             android:exported="false" />
         <activity
