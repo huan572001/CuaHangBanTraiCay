@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -29,9 +30,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginRight="16dp"
+                style="@style/content"
                 android:orientation="vertical">
 
                 <TextView
@@ -41,7 +40,7 @@
                     android:text="Họ và tên" />
 
                 <EditText
-                    android:id="@+id/fullName"
+                    android:id="@+id/edt_fullName"
                     style="@style/editText"
                     android:layout_width="match_parent" />
 
@@ -52,29 +51,73 @@
                     android:text="Email" />
 
                 <EditText
-                    android:id="@+id/emailDK"
+                    android:id="@+id/edt_emailDK"
                     style="@style/editText"
                     android:layout_width="match_parent" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Số điện thoại" />
+
+                <EditText
+                    android:id="@+id/edt_SDT"
+                    style="@style/editText"
+                    android:layout_width="match_parent"
+                    android:inputType="number"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="Mật khẩu" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/password"
+                    android:layout_width="match_parent"
+                    app:boxBackgroundMode="none"
+                    app:passwordToggleEnabled="true"
+                    app:hintEnabled="false">
 
-                <EditText
-                    android:id="@+id/MKDK"
-                    style="@style/editText"
-                    android:layout_width="match_parent" />
+                    <EditText
+                        android:id="@+id/edt_MKDK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="Xác nhận mật khẩu" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/password"
+                    android:layout_width="match_parent"
+                    app:boxBackgroundMode="none"
+                    app:passwordToggleEnabled="true"
+                    app:hintEnabled="false">
 
-                <EditText
-                    android:id="@+id/XNMK"
-                    style="@style/editText"
-                    android:layout_width="match_parent" />
+                    <EditText
+                        android:id="@+id/edt_XNMK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword"
+                        android:paddingTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,6 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.Fragment.CategoryFrament;
+import com.example.cuahangbantraicay.Fragment.EvaluateFragment;
+import com.example.cuahangbantraicay.Fragment.NewProductFragment;
+import com.example.cuahangbantraicay.Fragment.PopularProductFragment;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Fragment.HomeFragment;
 import com.example.cuahangbantraicay.Fragment.ProfileFragment;
@@ -72,7 +77,6 @@ public class MainActivity extends AppCompatActivity
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
@@ -80,19 +84,23 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new HomeFragment());
                 break;
             case R.id.nav_profile:
+                setTitle("PROFILE");
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_offers:
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_new_product:
-                replaceFragment(new ProfileFragment());
+                setTitle("NEW PRODUCT");
+                replaceFragment(new NewProductFragment());
                 break;
             case R.id.nav_popular_products:
-                replaceFragment(new ProfileFragment());
+                setTitle("POPULAR");
+                replaceFragment(new PopularProductFragment());
                 break;
             case R.id.nav_category:
-                replaceFragment(new ProfileFragment());
+                setTitle("CATEGORY");
+                replaceFragment(new CategoryFrament());
                 break;
             case R.id.nav_search:
                 replaceFragment(new ProfileFragment());
@@ -103,7 +111,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_my_cart:
                 replaceFragment(new ProfileFragment());
                 break;
+            case R.id.nav_Evaluate:
+                replaceFragment(new EvaluateFragment());
+                break;
             case R.id.nav_logout:
+                SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("token");
+                editor.apply();
                 startActivity(new Intent(getApplicationContext(), DangNhap.class));
                 break;
 

@@ -19,18 +19,22 @@ import android.widget.Toast;
 import com.example.cuahangbantraicay.API.LoginAPI;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
+import com.example.cuahangbantraicay.Utils.CustomToast;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DangNhap extends AppCompatActivity {
-    Button DangNhap;
+    Button DangNhap,btnCart,btnOrder,btnStatistic;
     TextView QuenMK,DK;
     EditText UserName,Password;
     SharedPreferences sharedPreferences;
     @SuppressLint("UseCompatLoadingForDrawables")
     private  void setControl() {
+        btnStatistic=findViewById(R.id.facebook);
+        btnCart=findViewById(R.id.google);
+        btnOrder=findViewById(R.id.apple);
         DangNhap=findViewById(R.id.DN);
         UserName=findViewById(R.id.username);
         Password=findViewById(R.id.password);
@@ -87,6 +91,24 @@ public class DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,CartActivity.class));
+            }
+        });
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,MyOrderActivity.class));
+            }
+        });
+        btnStatistic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,StatisticActivity.class));
+            }
+        });
     }
     public  void login() throws JSONException {
         LoginAPI.Login(DangNhap.this, new VolleyCallback() {
@@ -99,7 +121,8 @@ public class DangNhap extends AppCompatActivity {
                         startActivity(intent);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), result.get("mgs").toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), result.get("mgs").toString(), Toast.LENGTH_SHORT).show();
+                        CustomToast.makeText(getApplicationContext(), "Tên đăng nhập hoặc mật khẩu không đúng !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
                     }
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -131,7 +154,7 @@ public class DangNhap extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
         setContentView(R.layout.dang_nhap);
         setControl();
         setEvent();

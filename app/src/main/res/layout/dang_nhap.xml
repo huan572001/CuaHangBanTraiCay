@@ -47,7 +47,8 @@
                 <EditText
                     android:id="@+id/username"
                     style="@style/editText"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"
+                 />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -67,10 +68,10 @@
                         <EditText
                             android:id="@+id/password"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="wrap_content"
                             android:background="@android:color/transparent"
                             android:inputType="textPassword"
-
+                            android:paddingTop="10dp"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
 
@@ -108,6 +109,7 @@
                     android:textColor="#fff" />
 
                 <android.widget.Button
+                    android:id="@+id/facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -116,6 +118,7 @@
                     android:text="Tiếp tục với Facebook" />
 
                 <android.widget.Button
+                    android:id="@+id/apple"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -125,6 +128,7 @@
                     android:textColor="#FFF" />
 
                 <android.widget.Button
+                    android:id="@+id/google"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"

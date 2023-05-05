@@ -40,7 +40,7 @@ public class FragmentHomeProduct extends Fragment {
     }
 
     private void createViewTypeProduct() {
-        typeProductAdapter = new TypeProductAdapter(getContext());
+        typeProductAdapter = new TypeProductAdapter(getContext(),"1");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
         rcvTypeProduct.setLayoutManager(linearLayoutManager);
         try {
