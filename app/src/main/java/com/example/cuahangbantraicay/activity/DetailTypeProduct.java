@@ -71,6 +71,7 @@ public class DetailTypeProduct extends AppCompatActivity {
 
                             JSONArray events = result.getJSONArray("data");
                             JSONObject object= new JSONObject();
+                            JSONObject nameCategory= new JSONObject();
                             for (int j = 0; j < events.length(); j++) {
                                 object=(JSONObject) events.get(j);
                                 Product product=new Product();
@@ -82,7 +83,8 @@ public class DetailTypeProduct extends AppCompatActivity {
                                 product.setDiscout(object.getInt("discout"));
                                 listProduct.add(product);
                             }
-                            setTitle(String.valueOf(id) );
+
+                            setTitle((String)result.get("name"));
                             detailATypeProductAdapter.setData(listProduct);
                         }
                     } catch (JSONException e) {

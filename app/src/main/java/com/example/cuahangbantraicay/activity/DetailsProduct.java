@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.cuahangbantraicay.API.EcaluateAPI;
 import com.example.cuahangbantraicay.API.ProductAPI;
 import com.example.cuahangbantraicay.Fragment.StarsFrament;
@@ -30,7 +31,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -97,6 +101,7 @@ public class DetailsProduct extends AppCompatActivity {
                     try {
                         if ((Boolean) result.get("success")) {
                             JSONObject data = result.getJSONObject("data");
+                            Glide.with(getBaseContext()).load(data.getString("image")).into(img);
                             tv_name.setText(data.getString("name"));
                             tv_content.setText(data.getString("content"));
                             tv_discout.setText((String) String.valueOf(data.getInt("discout")) + "%");
@@ -145,7 +150,17 @@ public class DetailsProduct extends AppCompatActivity {
                                 ecaluate.setStars(object.getInt("stars"));
                                 ecaluate.setImage(object.getString("image"));
                                 ecaluate.setComment(object.getString("comment"));
-                                ecaluate.setTime(object.getString("createdAt"));
+                                String myDate = "2023-05-06";
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                try {
+                                    Date date = sdf.parse(myDate);
+                                    String formattedDate = new SimpleDateFormat("dd/MM/yyyy").format(date);
+
+                                    ecaluate.setTime(formattedDate);
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
 
                                 list.add(ecaluate);
                             }
