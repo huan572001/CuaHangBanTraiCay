@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,6 +21,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:theme="@style/Theme.ActionBar"
+            android:name=".activity.EvaluateReview"
+            android:exported="false" />
+        <activity
+            android:theme="@style/Theme.ActionBar"
             android:name=".activity.DetailTypeProduct"
             android:exported="false" />
         <activity
@@ -40,6 +47,7 @@
             android:name=".activity.PDF"
             android:exported="false" />
         <activity
+            android:theme="@style/Theme.ActionBar"
             android:name=".activity.DetailsProduct"
             android:exported="false" />
         <activity
@@ -53,13 +61,22 @@
             android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CheckoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.StatisticActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.DangNhap"
-            android:exported="false" >
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".activity.WelcomeActivity"
             android:exported="true">
@@ -68,6 +85,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.Profile"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".activity.EditProfile"
+            android:exported="false">
         </activity>
     </application>
 

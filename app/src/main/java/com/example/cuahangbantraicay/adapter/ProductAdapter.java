@@ -46,14 +46,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHoder holder, int position) {
         Product product = ListProduct.get(position);
-        System.out.println(product.getDiscout()+"===============================");
         if (product == null) return;
         holder.nameProduct.setText(product.getName());
         holder.price.setText("giá "+String.valueOf(product.getPrice_sell()));
         holder.discount.setText(String.valueOf(product.getDiscout())+"%");
         holder.quantity_sold.setText("Đã bán "+(String.valueOf(product.getQuantity_sold())));
         System.out.println(product.getImage());
-        Glide.with(mContext).load(product.getImage()).into(holder.imgProduct);
+        if(product.getImage()=="null"){
+            Glide.with(mContext).load(R.drawable.baseline_star_24).into(holder.imgProduct);
+
+        }else {
+            Glide.with(mContext).load(product.getImage()).into(holder.imgProduct);
+        }
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

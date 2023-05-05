@@ -133,11 +133,19 @@ public class WelcomeActivity extends AppCompatActivity {
         finish();
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
+
     private void CheckLogin(){
         sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         String token = sharedPreferences.getString("token", null);
+        int role= sharedPreferences.getInt("role",-1);
         if(token!=null){
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent;
+            if(role==1){
+                intent = new Intent(this, MainActivity.class);
+            }else {
+                intent = new Intent(this, Admin.class);
+            }
+
             startActivity(intent);
         }
     }

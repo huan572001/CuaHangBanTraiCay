@@ -5,20 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cuahangbantraicay.API.LoginAPI;
 import com.example.cuahangbantraicay.R;
-import com.example.cuahangbantraicay.Utils.BASE_URL;
 import com.example.cuahangbantraicay.Utils.CustomToast;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 
@@ -26,12 +22,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class DangNhap extends AppCompatActivity {
-    Button DangNhap;
+    Button DangNhap,btnCart,btnOrder,btnStatistic;
     TextView QuenMK,DK;
     EditText UserName,Password;
     SharedPreferences sharedPreferences;
     @SuppressLint("UseCompatLoadingForDrawables")
     private  void setControl() {
+        btnStatistic=findViewById(R.id.facebook);
+        btnCart=findViewById(R.id.google);
+        btnOrder=findViewById(R.id.apple);
         DangNhap=findViewById(R.id.DN);
         UserName=findViewById(R.id.username);
         Password=findViewById(R.id.password);
@@ -88,6 +87,12 @@ public class DangNhap extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnStatistic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DangNhap.this,StatisticActivity.class));
+            }
+        });
     }
     public  void login() throws JSONException {
         LoginAPI.Login(DangNhap.this, new VolleyCallback() {
@@ -95,8 +100,14 @@ public class DangNhap extends AppCompatActivity {
             public void onSuccess(JSONObject result) {
                 try {
                     if((Boolean) result.get("success")){
-                        setToken((String) result.get("token"));
-                        Intent intent = new Intent(DangNhap.this, MainActivity.class);
+                        JSONObject data= result.getJSONObject("data");
+                        Intent intent;
+                        if(data.getInt("role")==1){
+                             intent = new Intent(DangNhap.this, MainActivity.class);
+                        }else {
+                            intent = new Intent(DangNhap.this, Admin.class);
+                        }
+                        setToken((String) result.get("token"),data.getInt("role"));
                         startActivity(intent);
                     }
                     else {
@@ -115,16 +126,24 @@ public class DangNhap extends AppCompatActivity {
             }
         },UserName.getText().toString(),Password.getText().toString());
     }
-    private void setToken(String token) {
+    private void setToken(String token,int role) {
 
         SharedPreferences.Editor editer=sharedPreferences.edit();
         editer.putString("token",token);
+        editer.putInt("role",role);
         editer.commit();
     }
     private void CheckLogin(){
         String token = sharedPreferences.getString("token", null);
+        int role= sharedPreferences.getInt("role",-1);
         if(token!=null){
-            Intent intent = new Intent(DangNhap.this, MainActivity.class);
+            Intent intent;
+            if(role==1){
+                intent = new Intent(DangNhap.this, MainActivity.class);
+            }else {
+                intent = new Intent(DangNhap.this, Admin.class);
+            }
+
             startActivity(intent);
         }
     }

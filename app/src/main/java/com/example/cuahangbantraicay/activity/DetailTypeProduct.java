@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.cuahangbantraicay.API.ProductAPI;
 import com.example.cuahangbantraicay.Modal.Product;
@@ -43,12 +44,21 @@ public class DetailTypeProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_detail_a_type);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setControl();
         id = (int) getIntent().getSerializableExtra("idCategory");
         createViewProduct();
 
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void getListDetailATypePoduct() {
         try {
             ProductAPI.getProductByIDCategory(this, new VolleyCallback() {
@@ -61,6 +71,7 @@ public class DetailTypeProduct extends AppCompatActivity {
 
                             JSONArray events = result.getJSONArray("data");
                             JSONObject object= new JSONObject();
+                            JSONObject nameCategory= new JSONObject();
                             for (int j = 0; j < events.length(); j++) {
                                 object=(JSONObject) events.get(j);
                                 Product product=new Product();
@@ -73,6 +84,7 @@ public class DetailTypeProduct extends AppCompatActivity {
                                 listProduct.add(product);
                             }
 
+                            setTitle((String)result.get("name"));
                             detailATypeProductAdapter.setData(listProduct);
                         }
                     } catch (JSONException e) {
@@ -85,7 +97,7 @@ public class DetailTypeProduct extends AppCompatActivity {
                 public void onError(JSONObject errorMessage) {
 
                 }
-            }, 1);
+            }, id);
         } catch (JSONException e) {
             throw new RuntimeException(e);
         }

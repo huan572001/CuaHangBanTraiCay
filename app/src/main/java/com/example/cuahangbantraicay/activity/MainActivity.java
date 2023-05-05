@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.cuahangbantraicay.Fragment.CategoryFrament;
+import com.example.cuahangbantraicay.Fragment.EvaluateFragment;
 import com.example.cuahangbantraicay.Fragment.NewProductFragment;
 import com.example.cuahangbantraicay.Fragment.PopularProductFragment;
 import com.example.cuahangbantraicay.R;
@@ -59,11 +60,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         centerToolbarTitle(toolbar);
-
         mdrawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mdrawerLayout,toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -105,15 +104,22 @@ public class MainActivity extends AppCompatActivity
                 replaceFragment(new ProfileFragment());
                 break;
             case R.id.nav_my_order:
-                replaceFragment(new ProfileFragment());
+                startActivity(new Intent(this,MyOrderActivity.class));
+
                 break;
             case R.id.nav_my_cart:
-                replaceFragment(new ProfileFragment());
+                startActivity(new Intent(this,CartActivity.class));
+
+                break;
+            case R.id.nav_Evaluate:
+                setTitle("EVALUATE");
+                replaceFragment(new EvaluateFragment());
                 break;
             case R.id.nav_logout:
                 SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.remove("token");
+                editor.remove("role");
                 editor.apply();
                 startActivity(new Intent(getApplicationContext(), DangNhap.class));
                 break;
@@ -135,7 +141,13 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_navigasion, menu);
         MenuItem menuItem = menu.findItem(R.id.cart_action);
         menuItem.setIcon(Converter.convertLayoutToImage(MainActivity.this, cart_count, R.drawable.ic_shopping_basket));
-
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
+                startActivity(new Intent(getBaseContext(),MyOrderActivity.class));
+                return false;
+            }
+        });
         return true;
     }
     private void replaceFragment(Fragment fragment){
