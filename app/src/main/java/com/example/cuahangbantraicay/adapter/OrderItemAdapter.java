@@ -11,9 +11,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.model.Order_item;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -36,14 +40,14 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.txtQty.setText(String.valueOf(listOrderItem.get(position).getQuantity()));
-            holder.txtName.setText(listOrderItem.get(position).getProducts().getName());
-            holder.txtPrice.setText(String.valueOf(listOrderItem.get(position).getPrice())+"$");
-            holder.txtTotal.setText(String.valueOf(listOrderItem.get(position).getPrice()*listOrderItem.get(position).getQuantity())+"$");
-            String url=""+listOrderItem.get(position).getProducts().getImage();
-            Glide.with(holder.itemView.getContext())
-                    .load(url)
-                    .into(holder.itemPic);
+        holder.txtQty.setText(String.valueOf(listOrderItem.get(position).getQuantity()));
+        holder.txtName.setText(listOrderItem.get(position).getProducts().getName());
+        holder.txtPrice.setText(String.valueOf(listOrderItem.get(position).getPrice())+"$");
+        holder.txtTotal.setText(String.valueOf(listOrderItem.get(position).getPrice()*listOrderItem.get(position).getQuantity())+"$");
+        String url=""+listOrderItem.get(position).getProducts().getImage();
+        Glide.with(holder.itemView.getContext())
+                .load(url)
+                .into(holder.itemPic);
     }
 
     @Override

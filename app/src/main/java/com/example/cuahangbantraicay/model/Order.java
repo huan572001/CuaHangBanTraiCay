@@ -8,6 +8,9 @@ public class Order {
     String updatedAt;
     Integer user_id;
 
+
+
+
     public Integer getId() {
         return id;
     }

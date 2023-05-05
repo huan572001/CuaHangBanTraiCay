@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +17,7 @@ import com.example.cuahangbantraicay.adapter.OrderAdapter;
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.model.Order;
-import com.google.gson.Gson;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +31,7 @@ public class OrderFragment  extends Fragment {
     ArrayList<Order>listOrder=new ArrayList<>();
     TextView txtCountOrder;
     Order order = new Order();
-    Gson gson;
+
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
@@ -41,7 +42,7 @@ public class OrderFragment  extends Fragment {
         super.onCreate(savedInstanceState);
 
     };
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view =inflater.inflate(R.layout.fragment_order,container,false);
         recyclerView=view.findViewById(R.id.orderView);
         txtCountOrder=view.findViewById(R.id.txtCountOrder);
@@ -82,6 +83,7 @@ public class OrderFragment  extends Fragment {
                 order.setStatus(Boolean.valueOf(data.getJSONObject(i).getString("status")));
                 order.setUser_id(Integer.valueOf(data.getJSONObject(i).getString("user_id")));
                 order.setUpdatedAt(data.getJSONObject(i).getString("updatedAt"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

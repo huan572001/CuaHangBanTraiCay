@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,18 +14,25 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Fragment.OrderItemFragment;
 import com.example.cuahangbantraicay.model.Order;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
     private Context context;
     ArrayList<Order> listOrder;
+
     public  OrderAdapter(ArrayList<Order> listOrder,Context context){
         this.listOrder=listOrder;
         this.context=context;
+
     }
     @NonNull
     @Override
@@ -35,10 +43,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
         holder.txtStatus.setText(String.valueOf(listOrder.get(position).getStatus()));
         holder.txtMDH.setText(String.valueOf(listOrder.get(position).getId()));
         holder.txtDate.setText(String.valueOf(listOrder.get(position).getCreatedAt()));
         holder.txtAddress.setText(listOrder.get(position).getAddress());
+
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +68,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtStatus,txtDate,txtAddress,txtMDH,txtCountOrder;
         ConstraintLayout mainLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtAddress=itemView.findViewById(R.id.txtAddress);
@@ -65,6 +77,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             txtMDH=itemView.findViewById(R.id.txtMDH);
             txtCountOrder=itemView.findViewById(R.id.txtCountOrder);
             mainLayout=itemView.findViewById(R.id.statisticLayout);
+
         }
     }
 }

@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class VolleyApi {
-    public static void getJsonObjectA(Context context,  final VolleyCallback callback ){
+    public void getJsonObjectA(Context context,  final VolleyCallback callback ){
         RequestQueue queue = Volley.newRequestQueue(context);
         ArrayList<Cart_Item>listCart=new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
 
     }
-    public static void plusQuantity(Context context,Integer u_id, Integer p_id, Integer qty){
+    public void plusQuantity(Context context,Integer u_id, Integer p_id, Integer qty){
         RequestQueue queue =Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/cart/plusQty";
         JSONObject body = new JSONObject();
@@ -68,7 +68,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
-    public static void minusQuantity(Context context,Integer u_id, Integer p_id, Integer qty){
+    public void minusQuantity(Context context,Integer u_id, Integer p_id, Integer qty){
         RequestQueue queue =Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/cart/minusQty";
         JSONObject body = new JSONObject();
@@ -97,7 +97,7 @@ public class VolleyApi {
 
 
 
-    public static void deleteCartItem(Context context,Integer u_id, Integer p_id){
+    public void deleteCartItem(Context context,Integer u_id, Integer p_id){
         RequestQueue queue =Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/cart/delete";
         JSONObject body = new JSONObject();
@@ -124,7 +124,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
-    public static void placeOrder(Context context,Integer u_id,String address){
+    public void placeOrder(Context context,Integer u_id,String address){
         RequestQueue queue =Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/cart/checkOut";
         JSONObject body=new JSONObject();
@@ -150,7 +150,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
-    public static void getListOrderByUser(Context context, final VolleyCallback callback ){
+    public void getListOrderByUser(Context context, final VolleyCallback callback ){
         RequestQueue queue = Volley.newRequestQueue(context);
         String url="http://10.0.2.2:3000/api/order/getListOrder/1";
         JSONObject body = new JSONObject();
@@ -171,7 +171,7 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
-    public static void getOrderItem(Context context,final VolleyCallback callback,Integer order_id){
+    public void getOrderItem(Context context,final VolleyCallback callback,Integer order_id){
         RequestQueue queue = Volley.newRequestQueue(context);
         String url ="http://10.0.2.2:3000/api/order/getOrderItem/"+order_id;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url,
@@ -189,7 +189,7 @@ public class VolleyApi {
                 });
         queue.add(jsonObjectRequest);
     }
-    public static void getAllOrder(Context context, final VolleyCallback callback){
+    public void getAllOrder(Context context, final VolleyCallback callback){
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         String url ="http://10.0.2.2:3000/api/statistic/getAllOrder";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url,

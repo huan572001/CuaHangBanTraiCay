@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.adapter.CartA;
 import com.example.cuahangbantraicay.adapter.CartAdapter;
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
@@ -104,7 +105,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
 
-        adapter= new CartAdapter(listCart,CartActivity.this);
+        adapter= new CartA(listCart,CartActivity.this);
         recyclerViewCartList.setAdapter(adapter);
 
     }
