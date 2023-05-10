@@ -16,6 +16,8 @@ import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.jar.JarException;
+
 // Api lay tat ca cac san pham
 public class ProductApi1 {
     //    ====================================== lay tat ca san pham ===============================================
@@ -252,6 +254,33 @@ public class ProductApi1 {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        callback.onError(error);
+                    }
+                });
+        requestQueue.add(request);
+    }
+
+    public static void getThongKe(Context context, String url, VolleyCallback1 callback) throws JarException {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        System.out.println(url);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle response
+                        try {
+                            callback.onSuccess(response);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+                        System.out.println("Nam : " + response);
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
                         callback.onError(error);
                     }
                 });

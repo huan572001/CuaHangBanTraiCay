@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
@@ -46,21 +47,21 @@ public class PDF extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
         String string = new String();
-        createPDF("thang3/");
+        createPDF();
     }
 
-    private void createPDF(String filename) {
+    private void createPDF() {
         btnXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-
-                PdfDocument myPdfDocument= new PdfDocument() ;
-                Paint myPaint = new Paint();
-                PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250,400,1).create();
-                PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
-
-                Canvas canvas =myPage.getCanvas();
+//
+//                PdfDocument myPdfDocument= new PdfDocument() ;
+//                Paint myPaint = new Paint();
+//                PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(250,400,1).create();
+//                PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
+//
+//                Canvas canvas =myPage.getCanvas();
 
 //
 //                myPaint.setTextAlign(Paint.Align.CENTER);
@@ -97,21 +98,50 @@ public class PDF extends AppCompatActivity {
 //                myPaint.setStyle(Paint.Style.FILL);
 
 
-                canvas.drawBitmap(scaleBitmap,40,50,myPaint);
+//                canvas.drawBitmap(scaleBitmap,40,50,myPaint);
+                PdfDocument document = new PdfDocument();
+                PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
+                PdfDocument.Page page = document.startPage(pageInfo);
+                                Canvas canvas =page.getCanvas();
 
-                myPdfDocument.finishPage(myPage);
 
-                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),filename.concat(".pdf"));
+// Khởi tạo paint để vẽ các đường viền
+                Paint paint = new Paint();
+                paint.setColor(Color.BLACK);
+                paint.setTextSize(20);
+                canvas.drawText("Danh sách sinh viên", 50, 50, paint);
+
+// Vẽ các cột của bảng
+//                canvas.drawLine(50, 80, 250, 80, paint);
+                canvas.drawLine(50, 100, 300, 100, paint);
+//                canvas.drawLine(50, 120, 250, 120, paint);
+
+// Vẽ các dòng của bảng
+                canvas.drawText("ID", 60, 90, paint);
+                canvas.drawText("Họ tên", 100, 90, paint);
+                canvas.drawText("Điểm", 250, 90, paint);
+
+                canvas.drawText("1", 60, 120, paint);
+                canvas.drawText("Nguyễn Văn A", 100, 120, paint);
+                canvas.drawText("8.5", 250, 120, paint);
+
+// Kết thúc trang PDF
+                document.finishPage(page);
+
+//                myPdfDocument.finishPage(myPage);
+
+                File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),"hihi.pdf");
 
 
                 try {
-                    myPdfDocument.writeTo(new FileOutputStream(file));
+                    document.writeTo(new FileOutputStream(file));
                     Toast.makeText(getApplicationContext(), "File exported to " + file.getAbsolutePath(), Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                document.close();
 
-                myPdfDocument.close();
+//                myPdfDocument.close();
             }
         });
     }

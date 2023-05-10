@@ -121,16 +121,23 @@ public class Admin extends AppCompatActivity {
                                 .replace(R.id.NoiDung, new managerCategory())
                                 .commit();
                         break;
-                    case R.id.revenue:
-                        Toast.makeText(Admin.this, "Reveneu", Toast.LENGTH_SHORT).show();
-                        if (managerreveneu == null) {
-                            managerreveneu = new managerReveneu();
-                        }
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.NoiDung, new managerReveneu())
-                                .commit();
+//                    case R.id.revenue:
+//                        Toast.makeText(Admin.this, "Reveneu", Toast.LENGTH_SHORT).show();
+//                        if (managerreveneu == null) {
+//                            managerreveneu = new managerReveneu();
+//                        }
+//                        getSupportFragmentManager()
+//                                .beginTransaction()
+//                                .replace(R.id.NoiDung, new managerReveneu())
+//                                .commit();
+//                        break;
+                    case R.id.pdf:
+                        Toast.makeText(Admin.this, "Thongke", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), ThongKe.class);
+                        startActivity(intent);
                         break;
+
+
                     case R.id.logout:
 
                         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
