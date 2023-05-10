@@ -11,8 +11,10 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,12 +50,11 @@ public class Admin extends AppCompatActivity {
     AdminProductAdapter adminProductAdapter =null;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().hide();
         if (ManagerProductDetail.isActive || ManagerProductCreate.isActive || AdminProductAdapter.isActive) {
             initFragment();
@@ -73,6 +74,12 @@ public class Admin extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         setControl();
         setEvent();
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item))
+            return true;
+        return super.onOptionsItemSelected(item);
     }
 
     private void initFragment() {

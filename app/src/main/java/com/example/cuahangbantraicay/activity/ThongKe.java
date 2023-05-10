@@ -74,7 +74,7 @@ public class ThongKe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_ke);
         setControl();
-//        ActionToobar();
+//        ActionToobar()
         setDataCategory();
         setDataCategory1();
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ngocanh);
@@ -319,8 +319,8 @@ public class ThongKe extends AppCompatActivity {
         });
     }
 //    private void ActionToobar() {
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+////        setSupportActionBar(toolbar);
+////        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
