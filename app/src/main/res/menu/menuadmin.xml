@@ -19,14 +19,14 @@
         </item>
 
     </group>
-<!--    <group android:checkableBehavior="single">-->
-<!--        <item-->
-<!--            android:id="@+id/revenue"-->
-<!--            android:icon="@drawable/icon_chart"-->
-<!--            android:title="Thống kê">-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/revenue"
+            android:icon="@drawable/icon_cart"
+            android:title="Đơn hàng">
 
-<!--        </item>-->
-<!--    </group>-->
+        </item>
+    </group>
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/pdf"

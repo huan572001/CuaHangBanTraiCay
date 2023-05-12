@@ -35,7 +35,7 @@ public class ProductApi1 {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                        System.out.println("Nam : " + response);
+//                        System.out.println("Nam : " + response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -91,7 +91,7 @@ public class ProductApi1 {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                        System.out.println("Nam ngu : " + response);
+//                        System.out.println("Nam ngu : " + response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -273,7 +273,7 @@ public class ProductApi1 {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-                        System.out.println("Nam : " + response);
+//                        System.out.println("Nam : " + response);
                     }
                 },
                 new Response.ErrorListener() {
