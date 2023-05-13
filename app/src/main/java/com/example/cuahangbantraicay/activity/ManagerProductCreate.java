@@ -285,7 +285,6 @@ public class ManagerProductCreate extends AppCompatActivity {
     }
 
 
-
     private void CallAPIGetIdByName(String name) throws JSONException {
         ProductApi1.getByName(ManagerProductCreate.this, BASE_URL.BASE_ADMIN_URL + "getbyname/" + name, new VolleyCallback1() {
             @Override
@@ -340,17 +339,37 @@ public class ManagerProductCreate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SaveCreate();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isActive = true;
-                        Intent intent = new Intent(ManagerProductCreate.this, Admin.class);
-                        startActivity(intent);
-                    }
-                },3000);
+                if (TextUtils.isEmpty(edtName.getText().toString())) {
+                    edtName.setError("Không được để trống tên sản phẩm!");
+                    edtName.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaNhap.getText().toString())) {
+                    edtGiaNhap.setError("Không được để trống giá nhập!");
+                    edtGiaNhap.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaBan.getText().toString())) {
+                    edtGiaBan.setError("Không được để trống giá bán!");
+                    edtGiaBan.requestFocus();
+                } else if (TextUtils.isEmpty(edtContent.getText().toString())) {
+                    edtContent.setError("Không được để trống thông tin sản phẩm!");
+                    edtContent.requestFocus();
+                } else if (TextUtils.isEmpty(edtSoLuong.getText().toString())) {
+                    edtSoLuong.setError("Không được để trống số lượng!");
+                    edtSoLuong.requestFocus();
+                } else if (TextUtils.isEmpty(edtSLCon.getText().toString())) {
+                    edtSLCon.setError("Không được để trống số lượng còn lại!");
+                    edtSLCon.requestFocus();
+                } else {
 
+                    SaveCreate();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isActive = true;
+                            Intent intent = new Intent(ManagerProductCreate.this, Admin.class);
+                            startActivity(intent);
+                        }
+                    }, 5000);
+                }
 
 
             }

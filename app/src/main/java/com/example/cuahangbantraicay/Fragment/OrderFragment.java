@@ -97,4 +97,5 @@ public class OrderFragment  extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
+
 }

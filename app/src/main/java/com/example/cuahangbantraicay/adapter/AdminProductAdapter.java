@@ -78,7 +78,7 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
         holder.ivDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "em yeu anh", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Xoa", Toast.LENGTH_SHORT).show();
                 clickDeleteItem(productTmp.getId());
 
 
@@ -100,7 +100,7 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
 
                 @Override
                 public void onError(VolleyError errorMessage) {
-                    Toast.makeText(mContext, "khongthanhcong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Khongthanhcong", Toast.LENGTH_SHORT).show();
                     System.out.println(errorMessage);
                 }
             });
