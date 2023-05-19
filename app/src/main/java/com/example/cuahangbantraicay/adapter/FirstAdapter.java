@@ -1,10 +1,12 @@
 package com.example.cuahangbantraicay.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import com.example.cuahangbantraicay.Utils.BASE_URL;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 import com.example.cuahangbantraicay.activity.Admin;
 import com.example.cuahangbantraicay.activity.DetailOrder;
+import com.example.cuahangbantraicay.activity.DetailOrderH;
 import com.example.cuahangbantraicay.activity.DetailsProduct;
 
 import org.json.JSONException;
@@ -66,10 +69,32 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolderAd
             }
         });
         holder.ivCancle.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Cancle", Toast.LENGTH_SHORT).show();
-                clickOrderCancle(order.getId());
+                Dialog dialog = new Dialog(mContext);
+                dialog.setContentView(R.layout.alert_cancle);
+                Button btnYes = dialog.findViewById(R.id.YesCancle);
+                Button btnNo = dialog.findViewById(R.id.NoCancle);
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Toast.makeText(mContext, "Cancle", Toast.LENGTH_SHORT).show();
+                        clickOrderCancle(order.getId());
+
+                        dialog.dismiss();
+                    }
+                });
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
 //                new FirstAdapter(mContext,orderList);
 
 
@@ -78,7 +103,7 @@ public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.ViewHolderAd
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, DetailOrder.class);
+                Intent intent = new Intent(mContext, DetailOrderH.class);
                 intent.putExtra("idOrder",order.getId());
                 mContext.startActivity(intent);
 //                System.out.println(order.getId());

@@ -1,23 +1,19 @@
 package com.example.cuahangbantraicay.activity;
 
-import static java.security.AccessController.getContext;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.os.Handler;
-import android.widget.TextView;
-
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
-import com.example.cuahangbantraicay.adapter.CartA;
-import com.example.cuahangbantraicay.adapter.OrderAdapter;
 import com.example.cuahangbantraicay.adapter.OrderItemAdapter;
-import com.example.cuahangbantraicay.model.Order;
 import com.example.cuahangbantraicay.model.Order_item;
 import com.example.cuahangbantraicay.model.Products;
 import com.google.gson.Gson;
@@ -28,23 +24,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class DetailOrder extends AppCompatActivity {
+public class DetailOrderH extends AppCompatActivity {
     JSONObject response = new JSONObject();
     JSONArray data= new JSONArray();
     Order_item order_item;
     ArrayList<Order_item> listOrderItem = new ArrayList<>();
 
-
+    public static Boolean isActive = false ;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
 
+    TextView  textView;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.order_details);
+        setContentView(R.layout.order_detailsh);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerView=findViewById(R.id.order_details);
+        recyclerView=findViewById(R.id.order_detailsh);
+        textView = findViewById(R.id.backOrderItem);
         recyclerView.setLayoutManager(linearLayoutManager);
         callApi();
         final Handler handler = new Handler();
@@ -55,11 +53,19 @@ public class DetailOrder extends AppCompatActivity {
             }
         },100);
 
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isActive = true;
+                Intent intent = new Intent(DetailOrderH.this, Admin.class);
+                startActivity(intent);
+            }
+        });
 
     }
     public void callApi(){
         VolleyApi volleyApi =new VolleyApi();
-        volleyApi.getOrderItem(DetailOrder.this, new VolleyApi.VolleyCallback() {
+        volleyApi.getOrderItem(DetailOrderH.this, new VolleyApi.VolleyCallback() {
             @Override
             public void onSuccessResponse(String result) {
 
@@ -92,7 +98,7 @@ public class DetailOrder extends AppCompatActivity {
             listOrderItem.add(order_item);
         }
 
-        adapter = new OrderItemAdapter(listOrderItem,DetailOrder.this);
+        adapter = new OrderItemAdapter(listOrderItem, DetailOrderH.this);
 
         recyclerView.setAdapter(adapter);
 

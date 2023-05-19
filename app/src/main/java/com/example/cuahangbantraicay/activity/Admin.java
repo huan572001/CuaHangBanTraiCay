@@ -57,9 +57,10 @@ public class Admin extends AppCompatActivity {
             AdminProductAdapter.isActive = false;
 
         }
-        if (FirstAdapter.isActive){
+        if (FirstAdapter.isActive || DetailOrderH.isActive){
             initFragmentOrder();
             FirstAdapter.isActive = false;
+            DetailOrderH.isActive = false;
 
         }
         if (CategoryDetail.isActive || CategoryCreate.isActive || CategoryAdapter.isActive){

@@ -10,7 +10,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Modal.Product;
-import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 
 import org.json.JSONException;
@@ -284,6 +283,55 @@ public class ProductApi1 {
                         callback.onError(error);
                     }
                 });
+        requestQueue.add(request);
+    }
+
+
+    public static void CheckProduct(Context context, String url, Product product, VolleyCallback1  callback) throws JSONException {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        JSONObject postData = new JSONObject();
+
+
+
+        postData.put("name", product.getName());
+//        postData.put("content", product.getContent());
+//        postData.put("price_in", product.getPrice_in());
+//        postData.put("price_sell", product.getPrice_sell());
+//        postData.put("quantity", product.getQuantity());
+//        postData.put("quantity_sold", product.getQuantity_sold());
+//        postData.put("discout", product.getDiscout());
+//        postData.put("category_id", product.getCategory_id());
+
+
+
+//        JSONObject requestBody = new JSONObject();
+//        requestBody.put("data", postData);
+        System.out.println(postData+"huahsaud");
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, postData,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle response
+                        try {
+                            callback.onSuccess(response);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+//                        System.out.println("API check"+response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Handle error
+                        callback.onError(error);
+                    }
+                });
+
+
         requestQueue.add(request);
     }
 }

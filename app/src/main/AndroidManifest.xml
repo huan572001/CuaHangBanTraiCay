@@ -24,6 +24,9 @@
             android:name=".activity.DetailOrder"
             android:exported="false" />
         <activity
+            android:name=".activity.DetailOrderH"
+            android:exported="false" />
+        <activity
             android:name=".activity.ThongKe"
             android:exported="false"
             android:theme="@style/Theme.ActionBar" />
