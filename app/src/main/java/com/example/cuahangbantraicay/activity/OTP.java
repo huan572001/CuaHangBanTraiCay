@@ -5,13 +5,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.API.AuthAPI;
+import com.example.cuahangbantraicay.Modal.User;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.Utils.Loadding;
+import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.adapter.OTPAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +33,8 @@ public class OTP extends AppCompatActivity {
 
     List<String> listOTP = new ArrayList<>();
     List<String> listNumber = new ArrayList<>();
+    String tokenOTP;
+    User user;
     int count = 0;
 
     private void createViewProduct() {
@@ -53,6 +63,10 @@ public class OTP extends AppCompatActivity {
     }
 
     private void setEvent() {
+        tokenOTP= (String) getIntent().getSerializableExtra("tokenOTP");
+        user=(User) getIntent().getSerializableExtra("rigisterUser");
+        System.out.println(user);
+        System.out.println(tokenOTP);
         createViewProduct();
         createViewNumber();
         //Nhận giá trị onclick nhận từ adapter
@@ -72,7 +86,11 @@ public class OTP extends AppCompatActivity {
                         otpAdapter.setData(listOTP);
                     }
                     if (count == 6) {
-                        System.out.println("get API Check OTP");
+                        String otp="";
+                        for (int i = 0; i < listOTP.size(); i++) {
+                            otp=otp+listOTP.get(i);
+                        }
+                        verifyOTP(otp);
                     }
                 }
             }
@@ -142,5 +160,50 @@ public class OTP extends AppCompatActivity {
         otpNumberAdapter.setData(listNumber);
 
     }
+    private void verifyOTP(String otp){
 
+        try {
+
+            AuthAPI.VerifiOTP(this, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if((Boolean) result.get("success")){
+                            rigister();
+                        }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+
+                }
+            },otp,tokenOTP);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void rigister(){
+        try {
+            final Loadding loadingdialog = new Loadding(this);
+            loadingdialog.startLoadingdialog();
+            AuthAPI.Rigister(this, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    loadingdialog.dismissdialog();
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+                    loadingdialog.dismissdialog();
+                }
+            },user);
+        } catch (JSONException e) {
+
+            throw new RuntimeException(e);
+        }
+    }
 }

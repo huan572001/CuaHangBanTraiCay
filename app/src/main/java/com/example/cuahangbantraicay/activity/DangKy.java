@@ -10,12 +10,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.cuahangbantraicay.API.AuthAPI;
+import com.example.cuahangbantraicay.Modal.User;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.Utils.Loadding;
+import com.example.cuahangbantraicay.Utils.VolleyCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DangKy extends AppCompatActivity {
     TextView DN;
     Button btnDK;
     EditText edt_fullname,edt_email,edt_phone,edt_password,edt_confirm_password;
+    User user=new User();
     private  void setControl() {
         DN=findViewById(R.id.linkDN);
         btnDK=findViewById(R.id.btnDK);
@@ -37,6 +45,7 @@ public class DangKy extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 if(TextUtils.isEmpty(edt_fullname.getText().toString())){
                     edt_fullname.setError("Không được để trống!");
                     edt_fullname.requestFocus();
@@ -56,12 +65,52 @@ public class DangKy extends AppCompatActivity {
                     edt_confirm_password.setError("Mật khẩu xác nhận không khớp");
                     edt_confirm_password.requestFocus();
                 }else {
-                    Intent intent = new Intent(DangKy.this, OTP.class);
-                    startActivity(intent);
+
+                    user.setName(edt_fullname.getText().toString());
+                    user.setEmail(edt_email.getText().toString());
+                    user.setPhone(edt_phone.getText().toString());
+                    user.setPassword(edt_password.getText().toString());
+                    user.setName(edt_email.getText().toString());
+                    user.setRole("0");
+                    sendOTP();
+
                 }
 
             }
         });
+    }
+
+    public void sendOTP(){
+        try {
+            final Loadding loadingdialog = new Loadding(DangKy.this);
+            loadingdialog.startLoadingdialog();
+            AuthAPI.SendMail(this, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if((Boolean) result.get("success")){
+
+                            Intent intent = new Intent(DangKy.this, OTP.class);
+                            intent.putExtra("tokenOTP",(String) result.get("token"));
+                            intent.putExtra("rigisterUser",(User)user);
+                            startActivity(intent);
+                        }
+                    } catch (JSONException e) {
+                        loadingdialog.dismissdialog();
+                        throw new RuntimeException(e);
+
+                    }
+
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+                    loadingdialog.dismissdialog();
+                }
+            },edt_email.getText().toString());
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
