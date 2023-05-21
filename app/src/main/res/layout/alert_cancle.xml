@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/dialog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/backgroungColor">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/borderColor">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/dialog_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bạn có chắc chắn muốn hủy đơn hàng này không?"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="76dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/YesCancle"
+                    android:layout_width="100dp"
+                    android:backgroundTint="@color/green_light"
+                    android:layout_height="wrap_content"
+                    android:text="Có"
+                    android:layout_marginRight="60dp"/>
+
+                <Button
+                    android:id="@+id/NoCancle"
+                    android:layout_width="100dp"
+
+                    android:backgroundTint="@color/color_spicy"
+
+                    android:layout_height="wrap_content"
+
+                    android:text="Không" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

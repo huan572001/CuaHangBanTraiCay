@@ -93,6 +93,8 @@ public class DangNhap extends AppCompatActivity {
                 startActivity(new Intent(DangNhap.this,StatisticActivity.class));
             }
         });
+
+
     }
     public  void login() throws JSONException {
         LoginAPI.Login(DangNhap.this, new VolleyCallback() {

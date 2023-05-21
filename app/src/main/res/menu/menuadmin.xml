@@ -22,8 +22,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/revenue"
-            android:icon="@drawable/icon_chart"
-            android:title="Thống kê">
+            android:icon="@drawable/icon_cart"
+            android:title="Đơn hàng">
 
         </item>
     </group>
@@ -31,13 +31,14 @@
         <item
             android:id="@+id/pdf"
             android:icon="@drawable/outline_picture_as_pdf_24"
-            android:title="Xuat file">
+            android:title="Thống kê">
 
         </item>
     </group>
     <item
+        android:icon="@drawable/icon_logout"
         android:id="@+id/logout"
-        android:title="logout">
+        android:title="Logout">
 
     </item>
 </menu>

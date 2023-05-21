@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -246,6 +247,33 @@ public class ManagerProductCreate extends AppCompatActivity {
         return Base64.encodeToString(bytes, Base64.NO_WRAP);
     }
 
+    // check product
+    private void CheckProduct(Product product){
+        try {
+            ProductApi1.CheckProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "checkproduct", product, new VolleyCallback1() {
+                @Override
+                public void onSuccess(JSONObject response) throws JSONException {
+//
+                    Toast.makeText(ManagerProductCreate.this, "San pham da co trong cua hang!", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onError(VolleyError errorMessage) {
+//                    System.err.println(errorMessage.getMessage());
+//
+                    Toast.makeText(ManagerProductCreate.this, "Them moi thanh cong!", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        } catch (JSONException e) {
+//
+
+            throw new RuntimeException(e);
+
+        }
+    }
+
+
     private void SaveCreate() {
 
 
@@ -267,18 +295,24 @@ public class ManagerProductCreate extends AppCompatActivity {
             ProductApi1.createProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "create-product", productTmp, base64Img, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject response) throws JSONException {
-//
+//                    System.out.println("hihi"+response);
+                    JSONObject data = response.getJSONObject("response");
+                    System.out.println("hihi"+data);
+//                    System.out.println(productTmp);
+
+                    CheckProduct(productTmp);
                 }
 
                 @Override
                 public void onError(VolleyError errorMessage) {
                     System.err.println(errorMessage.getMessage());
+                    Toast.makeText(ManagerProductCreate.this, "Error Them moi khong thanh cong", Toast.LENGTH_SHORT).show();
 //
                 }
             });
         } catch (JSONException e) {
 //
-
+            Toast.makeText(this, "Catch Them moi khong thanh cong !", Toast.LENGTH_SHORT).show();
             throw new RuntimeException(e);
 
         }
@@ -340,17 +374,37 @@ public class ManagerProductCreate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SaveCreate();
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isActive = true;
-                        Intent intent = new Intent(ManagerProductCreate.this, Admin.class);
-                        startActivity(intent);
-                    }
-                },3000);
+                if (TextUtils.isEmpty(edtName.getText().toString())) {
+                    edtName.setError("Không được để trống tên sản phẩm!");
+                    edtName.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaNhap.getText().toString())) {
+                    edtGiaNhap.setError("Không được để trống giá nhập!");
+                    edtGiaNhap.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaBan.getText().toString())) {
+                    edtGiaBan.setError("Không được để trống giá bán!");
+                    edtGiaBan.requestFocus();
+                } else if (TextUtils.isEmpty(edtContent.getText().toString())) {
+                    edtContent.setError("Không được để trống thông tin sản phẩm!");
+                    edtContent.requestFocus();
+                } else if (TextUtils.isEmpty(edtSoLuong.getText().toString())) {
+                    edtSoLuong.setError("Không được để trống số lượng!");
+                    edtSoLuong.requestFocus();
+                } else if (TextUtils.isEmpty(edtSLCon.getText().toString())) {
+                    edtSLCon.setError("Không được để trống số lượng còn lại!");
+                    edtSLCon.requestFocus();
+                } else {
 
+                    SaveCreate();
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isActive = true;
+                            Intent intent = new Intent(ManagerProductCreate.this, Admin.class);
+                            startActivity(intent);
+                        }
+                    }, 5000);
+                }
 
 
             }

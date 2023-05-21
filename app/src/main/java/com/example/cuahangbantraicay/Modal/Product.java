@@ -15,9 +15,17 @@ public class Product implements Serializable {
     private int quantity_sold;
     private Boolean status;
 
-    public Product(){}
+    private  int total_quantity;
+    public Product(){
 
-    public Product(int id, String name, String image,  float price_sell, int discout, int quantity_sold, Boolean status) {
+    }
+    public Product(String name , int total_quantity){
+        this.name = name;
+
+        this.total_quantity = total_quantity;
+    }
+
+    public Product(int id, String name, String image, float price_sell, int discout, int quantity_sold, Boolean status, int total_quantity) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -25,8 +33,9 @@ public class Product implements Serializable {
         this.discout = discout;
         this.quantity_sold = quantity_sold;
         this.status = status;
+        this.total_quantity = total_quantity;
     }
-    public Product(int id, String name, String image, Float price_in, Float price_sell, String content, int category_id, int discout, int quantity, int quantity_sold, Boolean status) {
+    public Product(int id, String name, String image, Float price_in, Float price_sell, String content, int category_id, int discout, int quantity, int quantity_sold, Boolean status, int total_quantity) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -38,8 +47,15 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.quantity_sold = quantity_sold;
         this.status = status;
+        this.total_quantity = total_quantity;
     }
 
+    public int getTotal_quantity() {
+        return total_quantity;
+    }
+    public void setTotal_quantity(int total_quantity) {
+        this.total_quantity = total_quantity;
+    }
     public int getId() {
         return id;
     }

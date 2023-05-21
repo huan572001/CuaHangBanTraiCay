@@ -1,5 +1,6 @@
 package com.example.cuahangbantraicay.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 
 import com.android.volley.VolleyError;
@@ -14,6 +15,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -78,8 +80,30 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
         holder.ivDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "em yeu anh", Toast.LENGTH_SHORT).show();
-                clickDeleteItem(productTmp.getId());
+                Dialog dialog = new Dialog(mContext);
+                dialog.setContentView(R.layout.alert_delete);
+                Button btnYes = dialog.findViewById(R.id.Yes);
+                Button btnNo = dialog.findViewById(R.id.No);
+                btnYes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Toast.makeText(mContext, "Xoa", Toast.LENGTH_SHORT).show();
+                        clickDeleteItem(productTmp.getId());
+
+                        dialog.dismiss();
+                    }
+                });
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+
 
 
             }
@@ -88,7 +112,10 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
     }
 
     private void clickDeleteItem(int idProduct) {
+
         try{
+
+
             ProductApi1.DeleteProduct(mContext.getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "delete-product/"+ idProduct, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
@@ -100,7 +127,7 @@ public class AdminProductAdapter extends RecyclerView.Adapter<AdminProductAdapte
 
                 @Override
                 public void onError(VolleyError errorMessage) {
-                    Toast.makeText(mContext, "khongthanhcong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Khongthanhcong", Toast.LENGTH_SHORT).show();
                     System.out.println(errorMessage);
                 }
             });

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -147,6 +148,7 @@ public class ManagerProductDetail extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -208,11 +210,12 @@ public class ManagerProductDetail extends AppCompatActivity {
                 });
         pictureDialog.show();
     }
-    public static String CovertBitmapToBase64(Bitmap bitmap){
+
+    public static String CovertBitmapToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
-        return  Base64.encodeToString(bytes, Base64.NO_WRAP);
+        return Base64.encodeToString(bytes, Base64.NO_WRAP);
     }
 
     private void SaveProduct() {
@@ -228,8 +231,8 @@ public class ManagerProductDetail extends AppCompatActivity {
         product.setQuantity(Integer.parseInt(String.valueOf(edtSoLuong.getText())));
         product.setQuantity_sold(Integer.parseInt(String.valueOf(edtSLCon.getText())));
 
-        String base64Img="";
-        if (bitmap == null){
+        String base64Img = "";
+        if (bitmap == null) {
             base64Img = "";
             System.out.println(base64Img);
         } else {
@@ -239,7 +242,7 @@ public class ManagerProductDetail extends AppCompatActivity {
 //        progressBar.setVi     sibility(View.VISIBLE);
 
         try {
-            ProductApi1.EditProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "edit-product/" + product.getId(), product,base64Img, new VolleyCallback1() {
+            ProductApi1.EditProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "edit-product/" + product.getId(), product, base64Img, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
                     Toast.makeText(ManagerProductDetail.this, "thanhcong", Toast.LENGTH_SHORT).show();
@@ -263,11 +266,11 @@ public class ManagerProductDetail extends AppCompatActivity {
     }
 
     private void CallAPIGetIdByName(String name) throws JSONException {
-        ProductApi1.getByName(ManagerProductDetail.this, BASE_URL.BASE_ADMIN_URL + "getbyname/"+name, new VolleyCallback1() {
+        ProductApi1.getByName(ManagerProductDetail.this, BASE_URL.BASE_ADMIN_URL + "getbyname/" + name, new VolleyCallback1() {
             @Override
             public void onSuccess(JSONObject result) throws JSONException {
                 System.out.println(result);
-                 idCategory = result.getInt("data");
+                idCategory = result.getInt("data");
 
             }
 
@@ -286,11 +289,10 @@ public class ManagerProductDetail extends AppCompatActivity {
                 try {
 
                     CallAPIGetIdByName(selectedItem);
-                    System.out.println(idCategory+"id ne haong ngu");
+                    System.out.println(idCategory + "id ne haong ngu");
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
-
 
 
             }
@@ -319,11 +321,39 @@ public class ManagerProductDetail extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SaveProduct();
+                if (TextUtils.isEmpty(edtName.getText().toString())) {
+                    edtName.setError("Không được để trống tên sản phẩm!");
+                    edtName.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaNhap.getText().toString())) {
+                    edtGiaNhap.setError("Không được để trống giá nhập!");
+                    edtGiaNhap.requestFocus();
+                } else if (TextUtils.isEmpty(edtGiaBan.getText().toString())) {
+                    edtGiaBan.setError("Không được để trống giá bán!");
+                    edtGiaBan.requestFocus();
+                } else if (TextUtils.isEmpty(edtContent.getText().toString())) {
+                    edtContent.setError("Không được để trống thông tin sản phẩm!");
+                    edtContent.requestFocus();
+                } else if (TextUtils.isEmpty(edtSoLuong.getText().toString())) {
+                    edtSoLuong.setError("Không được để trống số lượng!");
+                    edtSoLuong.requestFocus();
+                } else if (TextUtils.isEmpty(edtSLCon.getText().toString())) {
+                    edtSLCon.setError("Không được để trống số lượng còn lại!");
+                    edtSLCon.requestFocus();
+                } else {
+                    SaveProduct();
 //                isActive= true;
 //                Intent intent = new Intent(ManagerProductDetail.this, Admin.class);
 //                startActivity(intent);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            isActive = true;
+                            Intent intent = new Intent(ManagerProductDetail.this, Admin.class);
+                            startActivity(intent);
+                        }
+                    }, 5000);
+                }
             }
         });
     }
