@@ -84,6 +84,7 @@ public class DangKy extends AppCompatActivity {
         try {
             final Loadding loadingdialog = new Loadding(DangKy.this);
             loadingdialog.startLoadingdialog();
+
             AuthAPI.SendMail(this, new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {

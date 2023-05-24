@@ -21,6 +21,7 @@ import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
+import com.example.cuahangbantraicay.Utils.Loadding;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 
@@ -69,10 +70,15 @@ public class CategoryDetail extends AppCompatActivity {
         category.setName(String.valueOf(edtName.getText()));
         System.out.println(category.getId());
 
+        final Loadding loadingdialog = new Loadding(CategoryDetail.this);
+        loadingdialog.startLoadingdialog();
+
+
         try {
             CategoryApi.CategoryUpdate(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "edit-category/"+category.getId() ,category, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(CategoryDetail.this, "thanhcong", Toast.LENGTH_SHORT).show();
                     isActive = true;
                     Intent intent = new Intent(CategoryDetail.this, Admin.class);
@@ -81,6 +87,7 @@ public class CategoryDetail extends AppCompatActivity {
 
                 @Override
                 public void onError(VolleyError errorMessage) {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(CategoryDetail.this, "Thatbai", Toast.LENGTH_SHORT).show();
 
                 }
@@ -88,6 +95,7 @@ public class CategoryDetail extends AppCompatActivity {
 
             });
         } catch (JSONException e) {
+            loadingdialog.dismissdialog();
             throw new RuntimeException(e);
 
         }

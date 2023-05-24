@@ -35,6 +35,7 @@ import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
+import com.example.cuahangbantraicay.Utils.Loadding;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 
@@ -241,10 +242,14 @@ public class ManagerProductDetail extends AppCompatActivity {
         System.out.println(base64Img);
 //        progressBar.setVi     sibility(View.VISIBLE);
 
+        final Loadding loadingdialog = new Loadding(ManagerProductDetail.this);
+        loadingdialog.startLoadingdialog();
+
         try {
             ProductApi1.EditProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "edit-product/" + product.getId(), product, base64Img, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(ManagerProductDetail.this, "thanhcong", Toast.LENGTH_SHORT).show();
                     isActive = true;
                     Intent intent = new Intent(ManagerProductDetail.this, Admin.class);
@@ -253,6 +258,7 @@ public class ManagerProductDetail extends AppCompatActivity {
 
                 @Override
                 public void onError(VolleyError errorMessage) {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(ManagerProductDetail.this, "Thatbai", Toast.LENGTH_SHORT).show();
 
                 }
@@ -260,6 +266,7 @@ public class ManagerProductDetail extends AppCompatActivity {
 
             });
         } catch (JSONException e) {
+            loadingdialog.dismissdialog();
             throw new RuntimeException(e);
 
         }

@@ -21,6 +21,7 @@ import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
+import com.example.cuahangbantraicay.Utils.Loadding;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 
@@ -63,15 +64,20 @@ public class CategoryCreate extends AppCompatActivity {
     private void SaveCreateCategory() {
         Category category = new Category();
         category.setName(String.valueOf(edtName.getText()));
+        final Loadding loadingdialog = new Loadding(CategoryCreate.this);
+        loadingdialog.startLoadingdialog();
+
         try {
             CategoryApi.createCategory(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "create-category", category, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(CategoryCreate.this, "thanh cong", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onError(VolleyError errorMessage) {
+                    loadingdialog.dismissdialog();
                     Toast.makeText(CategoryCreate.this, "error", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -79,7 +85,7 @@ public class CategoryCreate extends AppCompatActivity {
 //                        progressDialog.dismiss();
 //            progressBar.setVisibility(View.GONE);
 //            CustomToast.makeText(ManagerProductDetail.this, "Catch Thêm Mới Sản Phẩm Không Thành Công", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-
+            loadingdialog.dismissdialog();
             throw new RuntimeException(e);
 
         }
