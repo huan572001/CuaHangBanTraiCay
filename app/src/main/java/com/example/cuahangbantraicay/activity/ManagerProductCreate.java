@@ -35,6 +35,7 @@ import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
+import com.example.cuahangbantraicay.Utils.Loadding;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
 
@@ -254,7 +255,7 @@ public class ManagerProductCreate extends AppCompatActivity {
                 @Override
                 public void onSuccess(JSONObject response) throws JSONException {
 //
-                    Toast.makeText(ManagerProductCreate.this, "San pham da co trong cua hang!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManagerProductCreate.this, "Tao moi thanh cong!", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -289,7 +290,8 @@ public class ManagerProductCreate extends AppCompatActivity {
         productTmp.setQuantity(Integer.parseInt(String.valueOf(edtSoLuong.getText())));
         productTmp.setQuantity_sold(Integer.parseInt(String.valueOf(edtSLCon.getText())));
         String base64Img = CovertBitmapToBase64(bitmap);
-
+        final Loadding loadingdialog = new Loadding(ManagerProductCreate.this);
+        loadingdialog.startLoadingdialog();
 
         try {
             ProductApi1.createProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "create-product", productTmp, base64Img, new VolleyCallback1() {
@@ -297,14 +299,16 @@ public class ManagerProductCreate extends AppCompatActivity {
                 public void onSuccess(JSONObject response) throws JSONException {
 //                    System.out.println("hihi"+response);
                     JSONObject data = response.getJSONObject("response");
-                    System.out.println("hihi"+data);
+//                    System.out.println("hihi"+data);
 //                    System.out.println(productTmp);
 
                     CheckProduct(productTmp);
+                    loadingdialog.dismissdialog();
                 }
 
                 @Override
                 public void onError(VolleyError errorMessage) {
+                    loadingdialog.dismissdialog();
                     System.err.println(errorMessage.getMessage());
                     Toast.makeText(ManagerProductCreate.this, "Error Them moi khong thanh cong", Toast.LENGTH_SHORT).show();
 //
@@ -312,6 +316,7 @@ public class ManagerProductCreate extends AppCompatActivity {
             });
         } catch (JSONException e) {
 //
+            loadingdialog.dismissdialog();
             Toast.makeText(this, "Catch Them moi khong thanh cong !", Toast.LENGTH_SHORT).show();
             throw new RuntimeException(e);
 
