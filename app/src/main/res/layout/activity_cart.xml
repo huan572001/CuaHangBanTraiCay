@@ -113,10 +113,28 @@
         app:layout_constraintEnd_toEndOf="parent"
 
         app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/homeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_checkout_bg"
+            android:gravity="center"
+
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:text="Home" />
+        <View
+            android:layout_width="1sp"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            />
 
         <TextView
             android:id="@+id/checkOutBtn"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/btn_checkout_bg"
@@ -126,5 +144,6 @@
             android:textColor="#fff"
             android:textSize="24dp"
             android:textStyle="bold" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

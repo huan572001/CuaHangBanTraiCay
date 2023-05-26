@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
         menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
-                startActivity(new Intent(getBaseContext(),MyOrderActivity.class));
+                startActivity(new Intent(getBaseContext(),CartActivity.class));
                 return false;
             }
         });

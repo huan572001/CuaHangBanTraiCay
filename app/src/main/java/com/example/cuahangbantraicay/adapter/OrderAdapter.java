@@ -37,8 +37,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        if(listOrder.get(position).getStatus()==false){
+            holder.txtStatus.setText("Pending");
+        }else{
+            holder.txtStatus.setText("Success");
+        }
 
-        holder.txtStatus.setText(String.valueOf(listOrder.get(position).getStatus()));
         holder.txtMDH.setText(String.valueOf(listOrder.get(position).getId()));
         holder.txtDate.setText(String.valueOf(listOrder.get(position).getCreatedAt()));
         holder.txtAddress.setText(listOrder.get(position).getAddress());

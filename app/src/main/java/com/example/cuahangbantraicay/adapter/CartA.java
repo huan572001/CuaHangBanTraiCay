@@ -100,6 +100,7 @@ public class CartA extends RecyclerView.Adapter<CartA.ViewHolder> {
             public void onClick(View view) {
                 Integer qty ;
                 qty=Integer.parseInt(holder.txtQty.getText().toString());
+                holder.sub_total.setText(String.valueOf((qty+1)*cartList.get(position).getProducts().getPrice_sell()));
                 if(cartList.get(position).getProducts().getQuantity()>qty){
                     VolleyApi volleyApi = new VolleyApi();
                     volleyApi.plusQuantity(view.getContext(), cartList.get(position).getUser_id(),cartList.get(position).getProducts().getId(),qty);
@@ -117,6 +118,7 @@ public class CartA extends RecyclerView.Adapter<CartA.ViewHolder> {
             public void onClick(View view) {
                 Integer qty;
                 qty=Integer.parseInt(holder.txtQty.getText().toString());
+                holder.sub_total.setText(String.valueOf((qty-1)*cartList.get(position).getProducts().getPrice_sell()));
                 if(qty>=2){
                     VolleyApi volleyApi = new VolleyApi();
                     volleyApi.minusQuantity(view.getContext(),cartList.get(position).getUser_id(),cartList.get(position).getProducts().getId(),qty);
