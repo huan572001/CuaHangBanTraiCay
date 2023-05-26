@@ -175,7 +175,7 @@ public class DetailsProduct extends AppCompatActivity {
                                 ecaluate.setName(object.getString("username"));
                                 ecaluate.setStars(object.getInt("stars"));
                                 ecaluate.setImage(object.getString("image"));
-                                ecaluate.setComment(object.getString("comment"));
+                                ecaluate.setComment(object.getString("review"));
                                 String myDate = "2023-05-06";
                                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                                 try {

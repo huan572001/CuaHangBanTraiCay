@@ -17,7 +17,8 @@ import com.example.cuahangbantraicay.R;
 import java.util.List;
 
 
-public class OTPAdapter extends RecyclerView.Adapter<OTPAdapter.OTPViewHoder>{
+public class
+OTPAdapter extends RecyclerView.Adapter<OTPAdapter.OTPViewHoder>{
     private List<String> listOTP;
     private Context mContext;
     private OnItemClickListener mListener;//tạo đối tượng onclick để lấy ra giá trị

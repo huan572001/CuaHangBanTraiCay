@@ -110,6 +110,7 @@ public class DangNhap extends AppCompatActivity {
                             intent = new Intent(DangNhap.this, Admin.class);
                         }
                         setToken((String) result.get("token"),data.getInt("role"));
+                        setLocalUser(data.getString("username"),data.getString("image"),data.getInt("id"));
                         startActivity(intent);
                     }
                     else {
@@ -133,6 +134,15 @@ public class DangNhap extends AppCompatActivity {
         SharedPreferences.Editor editer=sharedPreferences.edit();
         editer.putString("token",token);
         editer.putInt("role",role);
+        editer.commit();
+    }
+    private void setLocalUser(String userName,String img,int user_id) {
+
+        SharedPreferences.Editor editer=sharedPreferences.edit();
+        editer.putString("userName",userName);
+        editer.putString("img",img);
+        editer.putInt("user_id",user_id);
+
         editer.commit();
     }
     private void CheckLogin(){

@@ -36,4 +36,26 @@ public class EcaluateAPI {
         };
         requestQueue.add(request);
     }
+
+    public static void getAllEcaluateNotReviewByUserID(Context context,int id, VolleyCallback callBack) throws JSONException {
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        String url = BASE_URL.BASE_USER_URL+ "getAllEcaluateReviewByUserID/"+id;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        callBack.onSuccess(response);
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error+"lỗi API này");
+            }
+
+        }) {
+
+        };
+        requestQueue.add(request);
+    }
 }

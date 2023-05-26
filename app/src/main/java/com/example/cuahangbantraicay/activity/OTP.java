@@ -187,9 +187,10 @@ public class OTP extends AppCompatActivity {
         }
     }
     private void rigister(){
+        final Loadding loadingdialog = new Loadding(this);
+        loadingdialog.startLoadingdialog();
         try {
-            final Loadding loadingdialog = new Loadding(this);
-            loadingdialog.startLoadingdialog();
+
             AuthAPI.Rigister(this, new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {
@@ -202,7 +203,7 @@ public class OTP extends AppCompatActivity {
                 }
             },user);
         } catch (JSONException e) {
-
+            loadingdialog.dismissdialog();
             throw new RuntimeException(e);
         }
     }

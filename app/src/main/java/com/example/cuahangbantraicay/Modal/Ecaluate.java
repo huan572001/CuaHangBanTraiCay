@@ -6,14 +6,36 @@ public class Ecaluate {
     private String comment;
     private String time;
     private int stars;
+    private int productId;
+    private String nameProduct;
+    private String imgProduct;
+
     public Ecaluate(){
 
     }
-    public Ecaluate(String name, String image, String comment,int stars) {
-        this.name = name;
-        this.image = image;
-        this.comment = comment;
-        this.stars=stars;
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public String getImgProduct() {
+        return imgProduct;
+    }
+
+    public void setImgProduct(String imgProduct) {
+        this.imgProduct = imgProduct;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getTime() {

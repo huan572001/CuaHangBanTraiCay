@@ -30,14 +30,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_email_QMK"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:text="Email" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/tv_email_QMK"
             style="@style/editText"
             android:layout_width="match_parent" />
         <Button
