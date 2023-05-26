@@ -1,5 +1,8 @@
 package com.example.cuahangbantraicay.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.activity.MainActivity;
 import com.example.cuahangbantraicay.adapter.OrderAdapter;
 import com.example.cuahangbantraicay.model.Order;
 
@@ -45,6 +49,12 @@ public class OrderFragment  extends Fragment {
         View view =inflater.inflate(R.layout.fragment_order,container,false);
         recyclerView=view.findViewById(R.id.orderView);
         txtCountOrder=view.findViewById(R.id.txtCountOrder);
+        txtCountOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),MainActivity.class));
+            }
+        });
         callApi();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -56,6 +66,9 @@ public class OrderFragment  extends Fragment {
         return view;
     }
     private void callApi(){
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        int user_id = sharedPreferences.getInt("user_id",-1);
         VolleyApi volleyApi = new VolleyApi();
         volleyApi.getListOrderByUser(getContext(), new VolleyApi.VolleyCallback() {
             @Override
@@ -67,7 +80,7 @@ public class OrderFragment  extends Fragment {
             public void onSuccessResponse(JSONObject result) {
                 response=result;
             }
-        });
+        },user_id);
         try {
             data=response.getJSONArray("order");
         } catch (JSONException e) {

@@ -1,6 +1,7 @@
 package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,12 +17,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class VolleyApi {
-    public void getJsonObjectA(Context context,  final VolleyCallback callback ){
+    public void getJsonObjectA(Context context,  final VolleyCallback callback, Integer u_id ){
         RequestQueue queue = Volley.newRequestQueue(context);
+        SharedPreferences sharedPreferences;
         ArrayList<Cart_Item>listCart=new ArrayList<>();
 
 
-        String url ="http://10.0.2.2:3000/api/cart/getCartItem/1";
+        String url ="http://10.0.2.2:3000/api/cart/getCartItem/"+u_id;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 url,
@@ -151,9 +153,9 @@ public class VolleyApi {
         queue.add(jsonObjectRequest);
     }
 
-    public void getListOrderByUser(Context context, final VolleyCallback callback ){
+    public void getListOrderByUser(Context context, final VolleyCallback callback, Integer user_id ){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url="http://10.0.2.2:3000/api/order/getListOrder/1";
+        String url="http://10.0.2.2:3000/api/order/getListOrder/"+user_id;
         JSONObject body = new JSONObject();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,body,
                 new Response.Listener<JSONObject>() {
@@ -207,6 +209,34 @@ public class VolleyApi {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    public void addToCart(Context context, Integer u_id, Integer p_id){
+        RequestQueue queue =Volley.newRequestQueue(context);
+        String url="http://10.0.2.2:3000/api/cart/add";
+        JSONObject body = new JSONObject();
+        try {
+            body.put("u_id",u_id);
+            body.put("p_id",p_id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.POST, url, (JSONObject) body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(jsonObjectRequest);
+
     }
 
 

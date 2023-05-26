@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cuahangbantraicay.API.VolleyApi;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.activity.CartActivity;
+import com.example.cuahangbantraicay.activity.MainActivity;
 import com.example.cuahangbantraicay.adapter.OrderItemAdapter;
 import com.example.cuahangbantraicay.model.Order_item;
 import com.example.cuahangbantraicay.model.Products;
@@ -58,7 +59,7 @@ public class OrderItemFragment extends Fragment {
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), CartActivity.class));
+                startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
         callApi(order_id);

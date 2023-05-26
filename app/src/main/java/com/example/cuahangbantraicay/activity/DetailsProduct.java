@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -50,6 +52,9 @@ public class DetailsProduct extends AppCompatActivity {
     CardView cardEcakuate;
     RecyclerView rcv_ecaluate;
     EcaluateAdapter ecaluateAdapter;
+    SharedPreferences sharedPreferences;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,7 @@ public class DetailsProduct extends AppCompatActivity {
         setControl();
         getProductById();
         createViewProduct();
+        idProduct = (int) getIntent().getSerializableExtra("idProduct");
         setEvent();
         replaceFragment(new StarsFrament(3.5));
     }
@@ -68,6 +74,7 @@ public class DetailsProduct extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println("vo roi nay");
+                callApi();
                 setAddCard();
             }
         });
@@ -116,6 +123,13 @@ public class DetailsProduct extends AppCompatActivity {
     private void setAddCard(){
         CustomToast.makeText(getApplicationContext(), "Thêm thành công !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
 //        VolleyApi.plusQuantity(this,1,idProduct,1);
+    }
+
+    private void callApi(){
+        sharedPreferences = DetailsProduct.this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        int user_id = sharedPreferences.getInt("user_id",-1);
+        VolleyApi volleyApi = new VolleyApi();
+        volleyApi.addToCart(DetailsProduct.this,user_id,idProduct);
     }
     private void getProductById() {
         idProduct = (int) getIntent().getSerializableExtra("idProduct");

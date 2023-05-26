@@ -1,6 +1,8 @@
 package com.example.cuahangbantraicay.Fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -75,8 +77,11 @@ public class ConfirmFragment extends Fragment {
         btnPlaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences sharedPreferences;
+                sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+                int user_id = sharedPreferences.getInt("user_id",-1);
                 VolleyApi volleyApi = new VolleyApi();
-                volleyApi.placeOrder(getContext(),1,address);
+                volleyApi.placeOrder(getContext(),user_id,address);
                 Toast toast=Toast.makeText(getContext(), "Place Order Success", Toast.LENGTH_LONG);
                 toast.show();
                 final Handler handler = new Handler();
@@ -96,7 +101,9 @@ public class ConfirmFragment extends Fragment {
     private void callApi() {
         VolleyApi volleyApi = new VolleyApi();
         Double total = Double.valueOf(0);
-
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        int user_id = sharedPreferences.getInt("user_id",-1);
 
 
 
@@ -110,7 +117,7 @@ public class ConfirmFragment extends Fragment {
             public void onSuccessResponse(JSONObject result) {
                 response=result;
             }
-        });
+        },user_id);
         try {
             data=response.getJSONArray("data");
         } catch (JSONException ex) {
@@ -139,9 +146,9 @@ public class ConfirmFragment extends Fragment {
                 total+=listCart.get(i).getQuantity()*listCart.get(i).getProducts().getPrice_sell();
             }
         }
-        txtTotalAmount.setText(""+(total+50));
+        txtTotalAmount.setText(""+(total+5));
         txtTotalItem.setText(""+total);
-        txtShip.setText(""+50);
+        txtShip.setText(""+5);
 
         adapter= new ConFirmAdapter(listCart,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());

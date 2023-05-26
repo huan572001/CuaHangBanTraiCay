@@ -1,6 +1,8 @@
 package com.example.cuahangbantraicay.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -26,7 +28,7 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private TextView textView7;
-    private TextView textView5,checkOutBtn;
+    private TextView textView5,checkOutBtn,homeBtn;
     private RecyclerView recyclerViewCartList;
     private TextView itemTotalTxt;
     private JSONObject response=new JSONObject();
@@ -43,6 +45,7 @@ public class CartActivity extends AppCompatActivity {
         itemTotalTxt=findViewById(R.id.itemTotalTxt);
         textView7=findViewById(R.id.textView7);
         textView5=findViewById(R.id.textView5);
+        homeBtn=findViewById(R.id.homeBtn);
         checkOutBtn=findViewById(R.id.checkOutBtn);
         clickApi();
         final Handler handler = new Handler();
@@ -59,13 +62,21 @@ public class CartActivity extends AppCompatActivity {
                 startActivity(new Intent(CartActivity.this,CheckoutActivity.class));
             }
         });
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CartActivity.this,MainActivity.class));
+            }
+        });
     }
     private void clickApi() {
         VolleyApi volleyApi = new VolleyApi();
         JSONArray data = new JSONArray();
         ArrayList<Cart_Item>listCart = new ArrayList<>();
         Cart_Item cartItem;
-
+        SharedPreferences sharedPreferences;
+        sharedPreferences = CartActivity.this.getSharedPreferences("user", Context.MODE_PRIVATE);
+        int user_id = sharedPreferences.getInt("user_id",-1);
         volleyApi.getJsonObjectA(CartActivity.this, new VolleyApi.VolleyCallback() {
             @Override
             public void onSuccessResponse(String result) {
@@ -76,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
             public void onSuccessResponse(JSONObject result) {
                 response=result;
             }
-        });
+        },user_id);
         try {
             data=response.getJSONArray("data");
         } catch (JSONException ex) {
