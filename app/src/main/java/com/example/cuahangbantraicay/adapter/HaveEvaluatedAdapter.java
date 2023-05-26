@@ -50,12 +50,12 @@ public class HaveEvaluatedAdapter extends RecyclerView.Adapter<HaveEvaluatedAdap
                 mContext.startActivity(intent);
             }
         });
-        if(listHaveEvaluateds.get(position).getImage()=="null"){
+        if(listHaveEvaluateds.get(position).getImage()==null){
             Glide.with(mContext).load("https://newfreshfoods.com.vn//datafiles/3/2018-02-27/16100958642348_tao-do-my-red-delicious-size-36-44.jpg").into(holder.img_user);
         }else {
             Glide.with(mContext).load(listHaveEvaluateds.get(position).getImage()).into(holder.img_user);
         }
-        if(listHaveEvaluateds.get(position).getImgProduct()=="null"){
+        if(listHaveEvaluateds.get(position).getImgProduct()==null){
             Glide.with(mContext).load("https://newfreshfoods.com.vn//datafiles/3/2018-02-27/16100958642348_tao-do-my-red-delicious-size-36-44.jpg").into(holder.tmg_product);
         }else {
             Glide.with(mContext).load(listHaveEvaluateds.get(position).getImgProduct()).into(holder.tmg_product);

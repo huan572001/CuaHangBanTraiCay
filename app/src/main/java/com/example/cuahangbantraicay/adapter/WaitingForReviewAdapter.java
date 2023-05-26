@@ -44,7 +44,8 @@ public class WaitingForReviewAdapter extends RecyclerView.Adapter<WaitingForRevi
 
     @Override
     public void onBindViewHolder(@NonNull WaitingForReviewViewHoder holder, int position) {
-        WaitingForReview waitingForReview=List.get(position);
+        WaitingForReview
+                waitingForReview=List.get(position);
         Glide.with(mContext).load(waitingForReview.getImg()).into(holder.img_WFR);
         holder.tv_name.setText(waitingForReview.getName());
         holder.tv_total.setText(waitingForReview.getQuantity()+" sản phẩm thành tiền: "+(waitingForReview.getPrice()*waitingForReview.getQuantity()));
@@ -55,6 +56,7 @@ public class WaitingForReviewAdapter extends RecyclerView.Adapter<WaitingForRevi
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, EvaluateReview.class);
                 intent.putExtra("review",  waitingForReview);
+                System.out.println(waitingForReview.getOrder_id()+"================");
                 mContext.startActivity(intent);
             }
         });

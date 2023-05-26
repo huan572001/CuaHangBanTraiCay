@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 
 public class WaitingForReview implements Parcelable {
     private int product_id;
+    private int order_id;
     private String img;
     private String name;
     private float price;
@@ -22,7 +23,16 @@ public class WaitingForReview implements Parcelable {
         this.quantity = quantity;
     }
 
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
     protected WaitingForReview(Parcel in) {
+        order_id=in.readInt();
         product_id = in.readInt();
         img = in.readString();
         name = in.readString();
@@ -89,6 +99,7 @@ public class WaitingForReview implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(order_id);
         parcel.writeInt(product_id);
         parcel.writeString(img);
         parcel.writeString(name);

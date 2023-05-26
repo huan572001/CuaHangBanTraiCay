@@ -4,7 +4,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,9 +20,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.cuahangbantraicay.API.EcaluateAPI;
+import com.example.cuahangbantraicay.Modal.Ecaluate;
 import com.example.cuahangbantraicay.Modal.WaitingForReview;
 import com.example.cuahangbantraicay.R;
 import com.example.cuahangbantraicay.Utils.CustomToast;
+import com.example.cuahangbantraicay.Utils.VolleyCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class EvaluateReview extends AppCompatActivity {
     WaitingForReview waitingForReview;
@@ -74,8 +82,8 @@ public class EvaluateReview extends AppCompatActivity {
         super.onBackPressed(); // gọi phương thức gốc
     }
     private void sendReview() {
+        addReview();
         CustomToast.makeText(getApplicationContext(), "Thành công !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-
         onBackPressed();
     }
 
@@ -114,10 +122,11 @@ public class EvaluateReview extends AppCompatActivity {
     private void getData() {
         Bundle b = getIntent().getExtras();
         waitingForReview = (WaitingForReview) b.getParcelable("review");
-
+        System.out.println(waitingForReview.getOrder_id()+"==========================5");
     }
 
     private void createView() {
+        Glide.with(this).load(waitingForReview.getImg()).into(img_ER);
         tv_ER_name.setText(waitingForReview.getName());
         tv_ER_price.setText(String.valueOf(waitingForReview.getPrice()) );
         tv_ER_quality.setText("x"+waitingForReview.getQuantity());
@@ -130,5 +139,29 @@ public class EvaluateReview extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void addReview(){
+
+        Ecaluate ecaluate=new Ecaluate();
+        ecaluate.setComment(edt_ER.getText().toString());
+        ecaluate.setStars(ratingBar.getNumStars());
+        ecaluate.setOrder_id(waitingForReview.getOrder_id());
+        ecaluate.setProductId(waitingForReview.getProduct_id());
+        System.out.println(waitingForReview.getOrder_id()+"==========="+ecaluate.getOrder_id()+"=============");
+        try {
+            EcaluateAPI.updateReview(this,ecaluate , new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    System.out.println("====================thanh cong ===================");
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+
+                }
+            });
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

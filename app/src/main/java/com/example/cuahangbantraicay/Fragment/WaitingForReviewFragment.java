@@ -1,5 +1,7 @@
 package com.example.cuahangbantraicay.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +13,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.cuahangbantraicay.API.EcaluateAPI;
+import com.example.cuahangbantraicay.Modal.Ecaluate;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.Modal.WaitingForReview;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.adapter.ProductAdapter;
 import com.example.cuahangbantraicay.adapter.WaitingForReviewAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +34,7 @@ public class WaitingForReviewFragment extends Fragment  {
 
     RecyclerView rcv_waitingForReview;
     WaitingForReviewAdapter waitingForReviewAdapter;
-
+    SharedPreferences sharedPreferences;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,14 +56,44 @@ public class WaitingForReviewFragment extends Fragment  {
     }
 
     private void getListProduct() {
-        List<WaitingForReview> listNewProduct=new ArrayList<>();
-        listNewProduct.add(new WaitingForReview(1,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(2,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(3,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(4,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(5,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(6,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        listNewProduct.add(new WaitingForReview(7,"https://znews-photo.zingcdn.me/w660/Uploaded/mdf_eioxrd/2021_07_06/2.jpg","sản phẩm này rất tôt hay mua sản phảm này",60,2));
-        waitingForReviewAdapter.setData(listNewProduct);
+        sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+        int user_id = sharedPreferences.getInt("user_id",-1);
+        List<WaitingForReview> listNewReview=new ArrayList<>();
+
+        try {
+            EcaluateAPI.getAllNotReviewByUserID(getContext(), user_id, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if ((Boolean) result.get("success")) {
+                            JSONArray events = result.getJSONArray("data");
+                            JSONObject object= new JSONObject();
+                            for (int j = 0; j < events.length(); j++) {
+                                object=(JSONObject) events.get(j);
+                                WaitingForReview waitingForReview  =new WaitingForReview();
+                                waitingForReview.setImg(object.getString("image"));
+                                waitingForReview.setName(object.getString("name"));
+                                waitingForReview.setQuantity(object.getInt("quantity"));
+                                waitingForReview.setPrice((int) object.getDouble("price_in") );
+                                waitingForReview.setOrder_id(object.getInt("order_id"));
+                                waitingForReview.setProduct_id(object.getInt("product_id"));
+                                System.out.println(waitingForReview.getOrder_id());
+                                listNewReview.add(waitingForReview);
+                            }
+                            waitingForReviewAdapter.setData(listNewReview);
+                        }
+                    } catch (JSONException e) {
+                        System.out.println(e + "lỗi nè");
+                    }
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+
+                }
+            });
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
