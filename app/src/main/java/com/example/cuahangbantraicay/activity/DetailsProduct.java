@@ -81,7 +81,7 @@ public class DetailsProduct extends AppCompatActivity {
         tv_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(),CheckoutActivity.class));
+                startActivity(new Intent(getBaseContext(),CartActivity.class));
             }
         });
     }
@@ -187,7 +187,9 @@ public class DetailsProduct extends AppCompatActivity {
                                 object = (JSONObject) events.get(j);
                                 Ecaluate ecaluate = new Ecaluate();
                                 ecaluate.setName(object.getString("username"));
-                                ecaluate.setStars(object.getInt("stars"));
+
+                                    ecaluate.setStars(object.getInt("stars"));
+
                                 ecaluate.setImage(object.getString("image"));
                                 ecaluate.setComment(object.getString("review"));
                                 String myDate = "2023-05-06";

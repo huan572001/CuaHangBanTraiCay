@@ -91,11 +91,13 @@ public class DangKy extends AppCompatActivity {
                     try {
                         if((Boolean) result.get("success")){
 
+
                             Intent intent = new Intent(DangKy.this, OTP.class);
                             intent.putExtra("tokenOTP",(String) result.get("token"));
                             intent.putExtra("rigisterUser",(User)user);
                             startActivity(intent);
                         }
+                        loadingdialog.dismissdialog();
                     } catch (JSONException e) {
                         loadingdialog.dismissdialog();
                         throw new RuntimeException(e);

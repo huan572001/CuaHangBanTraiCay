@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.cuahangbantraicay.API.AuthAPI;
 import com.example.cuahangbantraicay.Modal.User;
 import com.example.cuahangbantraicay.R;
+import com.example.cuahangbantraicay.Utils.CustomToast;
 import com.example.cuahangbantraicay.Utils.Loadding;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.adapter.OTPAdapter;
@@ -160,8 +161,39 @@ public class OTP extends AppCompatActivity {
         otpNumberAdapter.setData(listNumber);
 
     }
+//    public void sendOTP(){
+//        try {
+//            final Loadding loadingdialog = new Loadding(this);
+//            loadingdialog.startLoadingdialog();
+//
+//            AuthAPI.SendMail(this, new VolleyCallback() {
+//                @Override
+//                public void onSuccess(JSONObject result) {
+//                    try {
+//                        if((Boolean) result.get("success")){
+//
+//
+//                        }
+//                    } catch (JSONException e) {
+//                        loadingdialog.dismissdialog();
+//                        throw new RuntimeException(e);
+//
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onError(JSONObject errorMessage) {
+//                    loadingdialog.dismissdialog();
+//                }
+//            },edt_email.getText().toString());
+//        } catch (JSONException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     private void verifyOTP(String otp){
-
+        final Loadding loadingdialog = new Loadding(this);
+        loadingdialog.startLoadingdialog();
         try {
 
             AuthAPI.VerifiOTP(this, new VolleyCallback() {
@@ -170,8 +202,15 @@ public class OTP extends AppCompatActivity {
                     try {
                         if((Boolean) result.get("success")){
                             rigister();
+
+                            loadingdialog.dismissdialog();
+                        }else {
+                            loadingdialog.dismissdialog();
+                            CustomToast.makeText(getApplicationContext(), "OTP không đúng !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+
                         }
                     } catch (JSONException e) {
+                        loadingdialog.dismissdialog();
                         throw new RuntimeException(e);
                     }
 
@@ -179,10 +218,11 @@ public class OTP extends AppCompatActivity {
 
                 @Override
                 public void onError(JSONObject errorMessage) {
-
+                    loadingdialog.dismissdialog();
                 }
             },otp,tokenOTP);
         } catch (JSONException e) {
+            loadingdialog.dismissdialog();
             throw new RuntimeException(e);
         }
     }
@@ -194,12 +234,18 @@ public class OTP extends AppCompatActivity {
             AuthAPI.Rigister(this, new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {
+
                     loadingdialog.dismissdialog();
+                    CustomToast.makeText(getApplicationContext(), "Dang ky thanh cong !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+                    Intent intent = new Intent(getBaseContext(), DangNhap.class);
+                    startActivity(intent);
                 }
 
                 @Override
                 public void onError(JSONObject errorMessage) {
                     loadingdialog.dismissdialog();
+                    Intent intent = new Intent(getBaseContext(), DangNhap.class);
+                    startActivity(intent);
                 }
             },user);
         } catch (JSONException e) {

@@ -220,7 +220,8 @@ public class ManagerProductDetail extends AppCompatActivity {
     }
 
     private void SaveProduct() {
-
+        final Loadding loadingdialog = new Loadding(ManagerProductDetail.this);
+        loadingdialog.startLoadingdialog();
 //        System.out.println(product.getImage());
         product.setId(product.getId());
         product.setName(String.valueOf(edtName.getText()));
@@ -242,8 +243,7 @@ public class ManagerProductDetail extends AppCompatActivity {
         System.out.println(base64Img);
 //        progressBar.setVi     sibility(View.VISIBLE);
 
-        final Loadding loadingdialog = new Loadding(ManagerProductDetail.this);
-        loadingdialog.startLoadingdialog();
+
 
         try {
             ProductApi1.EditProduct(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "edit-product/" + product.getId(), product, base64Img, new VolleyCallback1() {

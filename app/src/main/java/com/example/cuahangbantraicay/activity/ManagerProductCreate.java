@@ -310,14 +310,14 @@ public class ManagerProductCreate extends AppCompatActivity {
                 public void onError(VolleyError errorMessage) {
                     loadingdialog.dismissdialog();
                     System.err.println(errorMessage.getMessage());
-                    Toast.makeText(ManagerProductCreate.this, "Error Them moi khong thanh cong", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ManagerProductCreate.this, "Error Them moi khong thanh cong", Toast.LENGTH_SHORT).show();
 //
                 }
             });
         } catch (JSONException e) {
 //
             loadingdialog.dismissdialog();
-            Toast.makeText(this, "Catch Them moi khong thanh cong !", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Catch Them moi khong thanh cong !", Toast.LENGTH_SHORT).show();
             throw new RuntimeException(e);
 
         }

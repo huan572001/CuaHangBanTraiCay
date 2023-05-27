@@ -20,12 +20,12 @@ public class AuthAPI {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         String url = BASE_URL.BASE_URL+ "register";
         JSONObject body = new JSONObject();
-        body.put("username",user.getUsername());
+        body.put("username",user.getEmail());
         body.put("password",user.getPassword());
         body.put("name",user.getName());
         body.put("email",user.getEmail());
         body.put("phone",user.getPhone());
-        body.put("role",user.getRole());
+        body.put("role",1);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, (JSONObject) body,
                 new Response.Listener<JSONObject>() {
                     @Override

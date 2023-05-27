@@ -22,7 +22,7 @@
             ><ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/huan2"/></androidx.cardview.widget.CardView>
+            android:src="@drawable/anhtraicay"/></androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/tv_name_type_product"
