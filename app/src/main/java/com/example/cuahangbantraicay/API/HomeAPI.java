@@ -2,6 +2,7 @@ package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -10,9 +11,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
+import com.example.cuahangbantraicay.Utils.authAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class HomeAPI {
     public static void getAllCategory(Context context, VolleyCallback callBack) throws JSONException {
@@ -32,7 +36,11 @@ public class HomeAPI {
             }
 
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
         };
         requestQueue.add(request);
     }

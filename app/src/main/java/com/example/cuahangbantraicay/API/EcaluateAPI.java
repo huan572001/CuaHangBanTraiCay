@@ -2,6 +2,7 @@ package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -11,10 +12,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Modal.Ecaluate;
 import com.example.cuahangbantraicay.Utils.BASE_URL;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
+import com.example.cuahangbantraicay.Utils.authAPI;
 import com.example.cuahangbantraicay.activity.EvaluateReview;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class EcaluateAPI {
     public static void getAllEcaluateByProductId(Context context,int id, VolleyCallback callBack) throws JSONException {
@@ -34,7 +38,11 @@ public class EcaluateAPI {
             }
 
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
         };
         requestQueue.add(request);
     }
@@ -56,7 +64,11 @@ public class EcaluateAPI {
             }
 
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
         };
         requestQueue.add(request);
     }
@@ -77,7 +89,11 @@ public class EcaluateAPI {
             }
 
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
         };
         requestQueue.add(request);
     }
@@ -104,7 +120,11 @@ public class EcaluateAPI {
             }
 
         }) {
-
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
         };
         requestQueue.add(request);
     }
