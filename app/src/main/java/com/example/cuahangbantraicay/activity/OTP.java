@@ -35,6 +35,7 @@ public class OTP extends AppCompatActivity {
     List<String> listOTP = new ArrayList<>();
     List<String> listNumber = new ArrayList<>();
     String tokenOTP;
+    String email;
     User user;
     int count = 0;
 
@@ -64,10 +65,9 @@ public class OTP extends AppCompatActivity {
     }
 
     private void setEvent() {
+        email=(String) getIntent().getSerializableExtra("email");
         tokenOTP= (String) getIntent().getSerializableExtra("tokenOTP");
         user=(User) getIntent().getSerializableExtra("rigisterUser");
-        System.out.println(user);
-        System.out.println(tokenOTP);
         createViewProduct();
         createViewNumber();
         //Nhận giá trị onclick nhận từ adapter
@@ -104,9 +104,12 @@ public class OTP extends AppCompatActivity {
                 for (int i=0;i<listOTP.size();i++){
                     listOTP.set(i,"0");
 
+
                 }
+                count=0;
                 otpAdapter.setData(listOTP);
                 System.out.println("gọi API gửi lại mã OTP");
+                sendOTP();
             }
         });
     }
@@ -161,37 +164,9 @@ public class OTP extends AppCompatActivity {
         otpNumberAdapter.setData(listNumber);
 
     }
-//    public void sendOTP(){
-//        try {
-//            final Loadding loadingdialog = new Loadding(this);
-//            loadingdialog.startLoadingdialog();
-//
-//            AuthAPI.SendMail(this, new VolleyCallback() {
-//                @Override
-//                public void onSuccess(JSONObject result) {
-//                    try {
-//                        if((Boolean) result.get("success")){
-//
-//
-//                        }
-//                    } catch (JSONException e) {
-//                        loadingdialog.dismissdialog();
-//                        throw new RuntimeException(e);
-//
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onError(JSONObject errorMessage) {
-//                    loadingdialog.dismissdialog();
-//                }
-//            },edt_email.getText().toString());
-//        } catch (JSONException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
     private void verifyOTP(String otp){
+
         final Loadding loadingdialog = new Loadding(this);
         loadingdialog.startLoadingdialog();
         try {
@@ -265,6 +240,36 @@ public class OTP extends AppCompatActivity {
             },user);
         } catch (JSONException e) {
             loadingdialog.dismissdialog();
+            throw new RuntimeException(e);
+        }
+    }
+    public void sendOTP(){
+        try {
+            final Loadding loadingdialog = new Loadding(this);
+            loadingdialog.startLoadingdialog();
+
+            AuthAPI.SendMail(this, new VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject result) {
+                    try {
+                        if((Boolean) result.get("success")){
+                            tokenOTP=(String) result.get("token");
+                        }
+                        loadingdialog.dismissdialog();
+                    } catch (JSONException e) {
+                        loadingdialog.dismissdialog();
+                        throw new RuntimeException(e);
+
+                    }
+
+                }
+
+                @Override
+                public void onError(JSONObject errorMessage) {
+                    loadingdialog.dismissdialog();
+                }
+            },email);
+        } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }

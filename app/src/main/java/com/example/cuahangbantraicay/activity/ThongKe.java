@@ -134,7 +134,7 @@ public class ThongKe extends AppCompatActivity {
             ThongKeApi.getThongKe(getApplicationContext(), BASE_URL.BASE_ADMIN_URL + "statistical/" + thang + "/" + nam, new VolleyCallback1() {
                 @Override
                 public void onSuccess(JSONObject result) throws JSONException {
-                    JSONArray data = result.getJSONArray("data");
+                    JSONArray data = result.getJSONArray("send_data");
                     JSONObject productObj = new JSONObject();
                      productList = new ArrayList<>();
                     for (int i = 0; i < data.length(); i++) {

@@ -79,35 +79,36 @@ public class OrderFragment  extends Fragment {
             @Override
             public void onSuccessResponse(JSONObject result) {
                 response=result;
+                try {
+                    data=response.getJSONArray("order");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < data.length(); i++) {
+                    order=new Order();
+                    try {
+                        order.setAddress(data.getJSONObject(i).getString("address"));
+                        order.setCreatedAt(data.getJSONObject(i).getString("createdAt"));
+                        order.setId(Integer.valueOf(data.getJSONObject(i).getString("id")));
+                        order.setStatus(Boolean.valueOf(data.getJSONObject(i).getString("status")));
+                        order.setUser_id(Integer.valueOf(data.getJSONObject(i).getString("user_id")));
+                        order.setUpdatedAt(data.getJSONObject(i).getString("updatedAt"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    listOrder.add(order);
+                }
+                adapter= new OrderAdapter(listOrder,getContext());
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
             }
         },user_id);
-        try {
-            data=response.getJSONArray("order");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < data.length(); i++) {
-            order=new Order();
-            try {
-                order.setAddress(data.getJSONObject(i).getString("address"));
-                order.setCreatedAt(data.getJSONObject(i).getString("createdAt"));
-                order.setId(Integer.valueOf(data.getJSONObject(i).getString("id")));
-                order.setStatus(Boolean.valueOf(data.getJSONObject(i).getString("status")));
-                order.setUser_id(Integer.valueOf(data.getJSONObject(i).getString("user_id")));
-                order.setUpdatedAt(data.getJSONObject(i).getString("updatedAt"));
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            listOrder.add(order);
-        }
-        adapter= new OrderAdapter(listOrder,getContext());
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 

@@ -100,6 +100,7 @@ public class DangKy extends AppCompatActivity {
                             Intent intent = new Intent(DangKy.this, OTP.class);
                             intent.putExtra("tokenOTP",(String) result.get("token"));
                             intent.putExtra("rigisterUser",(User)user);
+                            intent.putExtra("email",edt_email.getText().toString());
                             startActivity(intent);
                         }
                         loadingdialog.dismissdialog();

@@ -84,36 +84,37 @@ public class OrderItemFragment extends Fragment {
             @Override
             public void onSuccessResponse(JSONObject result) {
                 response = result;
+                try {
+                    data=response.getJSONArray("order_item");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Gson gson= new Gson();
+                Double total = Double.valueOf(0);
+                for (int i = 0; i < data.length(); i++) {
+                    order_item= new Order_item();
+                    order_item.setOrder_id(order_id);
+
+                    try {
+                        order_item.setPrice(Double.valueOf(data.getJSONObject(i).getString("price")));
+                        order_item.setQuantity(Integer.valueOf(data.getJSONObject(i).getString("quantity")));
+                        order_item.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    total+=order_item.getPrice()*order_item.getQuantity();
+                    listOrderItem.add(order_item);
+                }
+                txtTotal.setText("Total: "+total+"$");
+                adapter = new OrderItemAdapter(listOrderItem,getContext());
+                LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
+                linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
             }
         }, order_id);
-        try {
-            data=response.getJSONArray("order_item");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Gson gson= new Gson();
-        Double total = Double.valueOf(0);
-        for (int i = 0; i < data.length(); i++) {
-            order_item= new Order_item();
-            order_item.setOrder_id(order_id);
 
-            try {
-                order_item.setPrice(Double.valueOf(data.getJSONObject(i).getString("price")));
-                order_item.setQuantity(Integer.valueOf(data.getJSONObject(i).getString("quantity")));
-                order_item.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            total+=order_item.getPrice()*order_item.getQuantity();
-            listOrderItem.add(order_item);
-        }
-        txtTotal.setText("Total: "+total+"$");
-        adapter = new OrderItemAdapter(listOrderItem,getContext());
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(linearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 }
