@@ -2,6 +2,7 @@ package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -11,10 +12,13 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Modal.Product;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
+import com.example.cuahangbantraicay.Utils.authAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.jar.JarException;
 
 // Api lay tat ca cac san pham
@@ -44,7 +48,13 @@ public class ProductApi1 {
                         // Handle error
                         callBack.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
 
@@ -100,7 +110,14 @@ public class ProductApi1 {
                         // Handle error
                         callBack.onError(error);
                     }
-                });
+
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
 
 
@@ -161,7 +178,7 @@ public class ProductApi1 {
 //    }
 
     // ====================== xoa mot product ===================================
-    public static void DeleteProduct(Context context, String url, VolleyCallback1  callback) throws JSONException {
+    public static void DeleteProduct(Context context, String url, VolleyCallback1 callback) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.DELETE, url, null,
                 new Response.Listener<JSONObject>() {
@@ -183,7 +200,13 @@ public class ProductApi1 {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
 
 
         requestQueue.add(request);
@@ -197,16 +220,15 @@ public class ProductApi1 {
         JSONObject postData = new JSONObject();
 
 
-
-            postData.put("name", product.getName());
-            postData.put("content", product.getContent());
-            postData.put("price_in", product.getPrice_in());
-            postData.put("price_sell", product.getPrice_sell());
-            postData.put("quantity", product.getQuantity());
-            postData.put("quantity_sold", product.getQuantity_sold());
-            postData.put("discout", product.getDiscout());
-            postData.put("category_id", product.getCategory_id());
-            postData.put("image", "data:image/jpeg;base64," + Image);
+        postData.put("name", product.getName());
+        postData.put("content", product.getContent());
+        postData.put("price_in", product.getPrice_in());
+        postData.put("price_sell", product.getPrice_sell());
+        postData.put("quantity", product.getQuantity());
+        postData.put("quantity_sold", product.getQuantity_sold());
+        postData.put("discout", product.getDiscout());
+        postData.put("category_id", product.getCategory_id());
+        postData.put("image", "data:image/jpeg;base64," + Image);
 
 //        postData.put("image", "hahaha");
 //        postData.put("createdAt", formatter.format(date));
@@ -229,7 +251,13 @@ public class ProductApi1 {
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
 
     }
@@ -255,7 +283,13 @@ public class ProductApi1 {
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
     }
 
@@ -282,15 +316,20 @@ public class ProductApi1 {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
     }
 
 
-    public static void CheckProduct(Context context, String url, Product product, VolleyCallback1  callback) throws JSONException {
+    public static void CheckProduct(Context context, String url, Product product, VolleyCallback1 callback) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         JSONObject postData = new JSONObject();
-
 
 
         postData.put("name", product.getName());
@@ -303,10 +342,9 @@ public class ProductApi1 {
 //        postData.put("category_id", product.getCategory_id());
 
 
-
 //        JSONObject requestBody = new JSONObject();
 //        requestBody.put("data", postData);
-        System.out.println(postData+"huahsaud");
+        System.out.println(postData + "huahsaud");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, postData,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -329,7 +367,13 @@ public class ProductApi1 {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
 
 
         requestQueue.add(request);

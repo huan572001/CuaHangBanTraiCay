@@ -2,6 +2,7 @@ package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -11,10 +12,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Modal.Category;
 import com.example.cuahangbantraicay.Utils.VolleyCallback;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
+import com.example.cuahangbantraicay.Utils.authAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Map;
 import java.util.jar.JarException;
 
 public class CategoryApi {
@@ -41,7 +44,13 @@ public class CategoryApi {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
     }
 
@@ -74,7 +83,13 @@ public class CategoryApi {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
 
 
@@ -109,7 +124,13 @@ public class CategoryApi {
                         // Handle error
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
 
 
         requestQueue.add(request);
@@ -150,7 +171,13 @@ public class CategoryApi {
                         callBack.onError(error);
                     }
 
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
 
 
         requestQueue.add(request);

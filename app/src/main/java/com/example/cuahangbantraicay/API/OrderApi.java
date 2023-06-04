@@ -2,6 +2,7 @@ package com.example.cuahangbantraicay.API;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,9 +11,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cuahangbantraicay.Utils.VolleyCallback1;
+import com.example.cuahangbantraicay.Utils.authAPI;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Map;
 
 public class OrderApi {
 
@@ -41,7 +45,13 @@ public class OrderApi {
                         // Handle error
                         callBack.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
 
@@ -72,7 +82,13 @@ public class OrderApi {
                         // Handle error
                         callBack.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
 
@@ -104,7 +120,13 @@ public class OrderApi {
                         // Handle error
                         callBack.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         request.setRetryPolicy(new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
 
@@ -130,7 +152,13 @@ public class OrderApi {
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
 
     }
@@ -155,7 +183,13 @@ public class OrderApi {
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
 
     }
@@ -181,7 +215,13 @@ public class OrderApi {
                     public void onErrorResponse(VolleyError error) {
                         callback.onError(error);
                     }
-                });
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                authAPI authAPI = new authAPI(context);
+                return authAPI.getAuthorizationHeaders();
+            }
+        };
         requestQueue.add(request);
     }
 
