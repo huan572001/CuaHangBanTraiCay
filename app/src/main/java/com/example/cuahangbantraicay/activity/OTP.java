@@ -226,6 +226,10 @@ public class OTP extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed(); // gọi phương thức gốc
+    }
     private void rigister(){
         final Loadding loadingdialog = new Loadding(this);
         loadingdialog.startLoadingdialog();
@@ -234,11 +238,22 @@ public class OTP extends AppCompatActivity {
             AuthAPI.Rigister(this, new VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject result) {
+                    try {
+                        if((Boolean) result.get("success")){
+                            CustomToast.makeText(getApplicationContext(), "Dang ky thanh cong !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+                            loadingdialog.dismissdialog();
+                            Intent intent = new Intent(getBaseContext(), DangNhap.class);
+                            startActivity(intent);
+                        }else {
+                            loadingdialog.dismissdialog();
+                            CustomToast.makeText(getApplicationContext(), "email hoặc sdt đã tồn tại !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
+                            onBackPressed();
+                        }
+                    } catch (JSONException e) {
+                        loadingdialog.dismissdialog();
+                        throw new RuntimeException(e);
+                    }
 
-                    loadingdialog.dismissdialog();
-                    CustomToast.makeText(getApplicationContext(), "Dang ky thanh cong !", CustomToast.LENGTH_SHORT, CustomToast.ERROR, true).show();
-                    Intent intent = new Intent(getBaseContext(), DangNhap.class);
-                    startActivity(intent);
                 }
 
                 @Override

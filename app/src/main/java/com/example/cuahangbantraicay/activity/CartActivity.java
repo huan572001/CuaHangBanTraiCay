@@ -71,9 +71,9 @@ public class CartActivity extends AppCompatActivity {
     }
     private void clickApi() {
         VolleyApi volleyApi = new VolleyApi();
-        JSONArray data = new JSONArray();
+
         ArrayList<Cart_Item>listCart = new ArrayList<>();
-        Cart_Item cartItem;
+
         SharedPreferences sharedPreferences;
         sharedPreferences = CartActivity.this.getSharedPreferences("user", Context.MODE_PRIVATE);
         int user_id = sharedPreferences.getInt("user_id",-1);
@@ -86,35 +86,39 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onSuccessResponse(JSONObject result) {
                 response=result;
+                JSONArray data = new JSONArray();
+                Cart_Item cartItem;
+                try {
+                    data=response.getJSONArray("data");
+                } catch (JSONException ex) {
+                    System.out.println("================loi o day============");
+                    ex.printStackTrace();
+                }
+                Gson gson = new Gson();
+
+
+                for (int i = 0; i <data.length() ; i++) {
+                    cartItem = new Cart_Item();
+                    try {
+                        cartItem.setQuantity(data.getJSONObject(i).getInt("quantity"));
+                        cartItem.setUser_id(data.getJSONObject(i).getInt("user_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        cartItem.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    listCart.add(cartItem);
+                }
+
+
+                adapter= new CartA(listCart,CartActivity.this);
+                recyclerViewCartList.setAdapter(adapter);
             }
         },user_id);
-        try {
-            data=response.getJSONArray("data");
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
-        Gson gson = new Gson();
 
-
-        for (int i = 0; i <data.length() ; i++) {
-            cartItem = new Cart_Item();
-            try {
-                cartItem.setQuantity(data.getJSONObject(i).getInt("quantity"));
-                cartItem.setUser_id(data.getJSONObject(i).getInt("user_id"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                cartItem.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            listCart.add(cartItem);
-        }
-
-
-        adapter= new CartA(listCart,CartActivity.this);
-        recyclerViewCartList.setAdapter(adapter);
 
     }
 

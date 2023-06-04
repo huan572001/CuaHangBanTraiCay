@@ -60,14 +60,14 @@ public class OrderApi {
     // lay ra tat ca cac order accept
     public static void getAllOrderT(Context context, String url, VolleyCallback1 callBack) throws JSONException {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-
-
+        System.out.println(url+"======================================================");
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         // Handle response
                         try {
+                            System.out.println(url+"=====================================2=================");
                             callBack.onSuccess(response);
                         } catch (JSONException e) {
                             throw new RuntimeException(e);

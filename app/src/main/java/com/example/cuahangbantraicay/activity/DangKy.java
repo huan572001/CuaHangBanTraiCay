@@ -53,9 +53,14 @@ public class DangKy extends AppCompatActivity {
                     edt_email.setError("Không được để trống!");
                     edt_email.requestFocus();
                 }else if (TextUtils.isEmpty(edt_phone.getText().toString())) {
+
                     edt_phone.setError("Không được để trống!");
                     edt_phone.requestFocus();
-                }else if (TextUtils.isEmpty(edt_password.getText().toString())) {
+                }else if(edt_phone.getText().length()!=10){
+                    edt_phone.setError("Sô đt phải là 10 số!");
+                    edt_phone.requestFocus();
+                }
+                else if (TextUtils.isEmpty(edt_password.getText().toString())) {
                     edt_password.setError("Không được để trống!");
                     edt_password.requestFocus();
                 }else if (TextUtils.isEmpty(edt_confirm_password.getText().toString())) {

@@ -53,10 +53,12 @@ public class SecondFragment extends Fragment {
         OrderApi.getAllOrderT(getContext(), BASE_URL.BASE_ADMIN_URL + "order-true", new VolleyCallback1() {
             @Override
             public void onSuccess(JSONObject result) throws JSONException {
-                orderList = new ArrayList<>();
-                JSONArray data = result.getJSONArray("data");
-                JSONObject orderObj = new JSONObject();
 
+                orderList = new ArrayList<>();
+                JSONArray data = result.getJSONArray("send_data");
+                System.out.println(data+"=====================3=====================");
+
+                JSONObject orderObj = new JSONObject();
                 for (int i = 0; i < data.length(); i++) {
                     orderObj = (JSONObject) data.get(i);
                     Order tmpC = new Order();

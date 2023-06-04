@@ -57,7 +57,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void onSuccess(JSONObject result) throws JSONException {
                 orderList = new ArrayList<>();
-                JSONArray data = result.getJSONArray("data");
+                JSONArray data = result.getJSONArray("send_data");
                 JSONObject orderObj = new JSONObject();
 
                 for (int i = 0; i < data.length(); i++) {

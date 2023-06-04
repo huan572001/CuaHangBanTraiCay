@@ -100,7 +100,7 @@ public class ConfirmFragment extends Fragment {
 
     private void callApi() {
         VolleyApi volleyApi = new VolleyApi();
-        Double total = Double.valueOf(0);
+
         SharedPreferences sharedPreferences;
         sharedPreferences = getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
         int user_id = sharedPreferences.getInt("user_id",-1);
@@ -116,46 +116,48 @@ public class ConfirmFragment extends Fragment {
             @Override
             public void onSuccessResponse(JSONObject result) {
                 response=result;
+                Double total = Double.valueOf(0);
+                try {
+                    data=response.getJSONArray("data");
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+                Gson gson = new Gson();
+
+
+                for (int i = 0; i <data.length() ; i++) {
+                    cartItem = new Cart_Item();
+                    try {
+                        cartItem.setQuantity(data.getJSONObject(i).getInt("quantity"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        cartItem.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    listCart.add(cartItem);
+                }
+
+                if(listCart.size()>0){
+                    for (int i = 0; i <listCart.size() ; i++) {
+                        total+=listCart.get(i).getQuantity()*listCart.get(i).getProducts().getPrice_sell();
+                    }
+                }
+                txtTotalAmount.setText(""+(total+5));
+                txtTotalItem.setText(""+total);
+                txtShip.setText(""+5);
+
+                adapter= new ConFirmAdapter(listCart,getContext());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
             }
         },user_id);
-        try {
-            data=response.getJSONArray("data");
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
-        Gson gson = new Gson();
 
-
-        for (int i = 0; i <data.length() ; i++) {
-            cartItem = new Cart_Item();
-            try {
-                cartItem.setQuantity(data.getJSONObject(i).getInt("quantity"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                cartItem.setProducts(gson.fromJson(String.valueOf(data.getJSONObject(i).getJSONObject("product")), Products.class));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            listCart.add(cartItem);
-        }
-
-        if(listCart.size()>0){
-            for (int i = 0; i <listCart.size() ; i++) {
-                total+=listCart.get(i).getQuantity()*listCart.get(i).getProducts().getPrice_sell();
-            }
-        }
-        txtTotalAmount.setText(""+(total+5));
-        txtTotalItem.setText(""+total);
-        txtShip.setText(""+5);
-
-        adapter= new ConFirmAdapter(listCart,getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
 }
